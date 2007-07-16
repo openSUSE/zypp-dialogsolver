@@ -1,0 +1,87 @@
+#
+# spec file for package libzypp-zmd-backend (Version 7.1.1.0)
+#
+# Copyright (c) 2006 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# This file and all modifications and additions to the pristine
+# package are under the same license as the package itself.
+#
+# Please submit bugfixes or comments via http://bugs.opensuse.org/
+#
+
+# norootforbuild
+
+Name:           libzypp-zmd-backend
+Version:        @VERSION@
+Release:        0
+License:        GPL
+Group:          System/Management
+Summary:        ZMD backend for Package, Patch, Pattern, and Product Management
+Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`)
+Provides:       zmd-backend
+Provides:       zmd-librc-backend
+Obsoletes:      zmd-librc-backend
+Autoreqprov:    on
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+BuildRequires:  dejagnu gcc-c++ 
+
+%if %suse_version > 1010
+BuildRequires:  sqlite-zmd sqlite-zmd-devel
+%else
+BuildRequires:  sqlite sqlite-devel
+%endif
+
+# API Changes in zypp 2.1
+BuildRequires: libzypp-devel >= 2.8.7
+BuildRequires: libzypp >= 2.8.7
+Requires: libzypp >= 2.8.7
+
+Source:         zmd-backend-%{version}.tar.bz2
+Prefix:         /usr
+
+%description
+This package provides binaries which enable the ZENworks daemon (ZMD)
+to perform its management tasks on the system.
+
+
+
+Authors:
+--------
+    Klaus Kaempf <kkaempf@suse.de>
+
+%prep
+%setup -q -n zmd-backend-%{version}
+
+%build
+sed -i '/devel\//d' configure.ac
+cp /usr/share/gettext/config.rpath .
+autoreconf --force --install --symlink --verbose
+
+%{?suse_update_config:%{suse_update_config -f}}
+CXXFLAGS="$RPM_OPT_FLAGS" \
+./configure --prefix=%{prefix} --libdir=%{_libdir} --mandir=%{_mandir} --disable-static
+make %{?jobs:-j %jobs}
+#make check
+
+%install
+make install DESTDIR=$RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/etc/logrotate.d
+install -m 644 logrotate_zmd_backend  $RPM_BUILD_ROOT/etc/logrotate.d/zmd-backend
+
+# bug 256399 - zmd stops working after update
+# we install a fake query system as the solution
+install -m 755 src/query-system.sh  $RPM_BUILD_ROOT/%{_libdir}/zmd/query-system
+
+# Create filelist with translatins
+#%{find_lang} zypp
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%{_libdir}/libzmd-backend.*
+%dir %{_libdir}/zmd
+%{_libdir}/zmd/*
+%dir %{prefix}/include/zmd-backend
+%{prefix}/include/zmd-backend/*
+/etc/logrotate.d/zmd-backend
