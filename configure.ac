@@ -142,7 +142,7 @@ dnl checks for system services
 dnl ==================================================
 dnl AC_CONFIG_FILES([FILE...])
 AC_OUTPUT(Makefile			\
-	libzypp-qdialogsovler.spec	\
+	libzypp-qdialogsolver.spec	\
 	src/Makefile
 )
 dnl ==================================================
