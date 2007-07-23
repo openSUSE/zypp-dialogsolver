@@ -24,6 +24,12 @@
 #include <qvariant.h>
 #include <qpixmap.h>
 #include <qwidget.h>
+#include <qtabwidget.h>
+#include <qlistview.h>
+#include "zypp/Resolver.h"
+#include <zypp/PoolItem.h>
+#include <zypp/Resolvable.h>
+
 
 class QVBoxLayout;
 class QHBoxLayout;
@@ -43,16 +49,21 @@ class ResTreeWidget : public QWidget
     Q_OBJECT
 
 public:
-    ResTreeWidget(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    ResTreeWidget(QWidget* parent = 0, zypp::solver::detail::Resolver_Ptr r = NULL, const char* name = 0, WFlags fl = 0 );
     ~ResTreeWidget();
 
     QSplitter* m_Splitter;
     ResGraphView* m_RevGraphView;
+    zypp::solver::detail::Resolver_Ptr resolver;    
 
     void dumpRevtree();
 
 protected:
     QVBoxLayout* ResTreeWidgetLayout;
+    
+    QTabWidget *tabWidget;
+    QListView *installListView;
+    QListView *installedListView;    
     QTextBrowser* m_Detailstext;
 
 

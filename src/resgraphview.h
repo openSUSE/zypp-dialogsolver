@@ -24,6 +24,10 @@
 #include <qcanvas.h>
 #include <qfile.h>
 #include <qprocess.h>
+#include <zypp/PoolItem.h>
+#include <zypp/Resolver.h>
+#include <zypp/Resolvable.h>
+
 
 namespace svn {
     class LogEntry;
@@ -69,15 +73,11 @@ public:
     typedef QValueList<targetData> tlist;
 
     struct keyData {
-        QString name,
-	    kind,
-	    source,
-	    version,
-	    description;
+	zypp::ResObject::constPtr res;
         tlist targets;
     };
 
-    typedef QMap<QString,keyData> trevTree;
+    typedef QMap<QString, keyData> trevTree;
 
     QString toolTip(const QString&nodename,bool full=false)const;
 

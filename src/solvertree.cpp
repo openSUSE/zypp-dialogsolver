@@ -65,118 +65,11 @@ SolverTree::SolverTree( QWidget*treeParent,
 {
     m_Data = new StreeData;
 
-    unsigned count = 0;
     m_Data->m_stopTick.restart();
     m_Data->m_TreeDisplay=new ResTreeWidget(treeParent);
     m_Data->m_TreeDisplay->setMinimumSize ( 700, 700 );
 
-    if (resolver == NULL) { // testcase
-
-	QString n12 = "product2";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n12].name="SuSE Linux 10.2";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n12].kind="Product";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n12].source="nfs:://mounts/dist/....";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n12].version="4.0";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n12].description="Opensuse 10.2";
-
-	for (count=1; count <= 4 ; ++count) {    
-
-	    QString n2;
-
-	    n2.setNum(count+1000);
-
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n12].targets.append(ResGraphView::targetData(n2));
-
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].name="Pattern " + n2;
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].kind="Pattern";
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].source="nfs:://mounts/dist/....";
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].version="1.0";
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].description="Patterndescription for " + n2;
-
-
-	    for (int count2=1; count2 <= 4 ; ++count2) {    
-
-		QString n3;
-
-		n3.setNum(count*10+count2+1000);
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].targets.append(ResGraphView::targetData(n3));
-
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].name="Package " + n3;
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].kind="Package";
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].source="nfs:://mounts/dist/....";
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].version="1.0";
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].description="Packagedescription for " + n3;
-
-		for (int count3=1; count3 <= count2 ; ++count3) {    
-
-		    QString n4;
-
-		    n4.setNum(count*100+count2*10+count3+1000);
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].targets.append(ResGraphView::targetData(n4));
-
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].name="Package " + n4;
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].kind="Package";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].source="nfs:://mounts/dist/....";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].version="1.0";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].description="Packagedescription for " + n4;
-
-		}
-	    }
-	}	
-
-	
-	QString n1 = "product";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n1].name="SuSE SLES10";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n1].kind="Product";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n1].source="nfs:://mounts/dist/....";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n1].version="4.0";
-	m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n1].description="Enterprise Server 10";
-    
-	for (count=1; count <= 4 ; ++count) {    
-
-	    QString n2;
-
-	    n2.setNum(count);
-
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n1].targets.append(ResGraphView::targetData(n2));
-
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].name="Pattern " + n2;
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].kind="Pattern";
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].source="nfs:://mounts/dist/....";
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].version="1.0";
-	    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].description="Patterndescription for " + n2;
-
-
-	    for (int count2=1; count2 <= 4 ; ++count2) {    
-
-		QString n3;
-
-		n3.setNum(count*10+count2);
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n2].targets.append(ResGraphView::targetData(n3));
-
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].name="Package " + n3;
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].kind="Package";
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].source="nfs:://mounts/dist/....";
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].version="1.0";
-		m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].description="Packagedescription for " + n3;
-
-		for (int count3=1; count3 <= count2 ; ++count3) {    
-
-		    QString n4;
-
-		    n4.setNum(count*100+count2*10+count3);
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n3].targets.append(ResGraphView::targetData(n4));
-
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].name="Package " + n4;
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].kind="Package";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].source="nfs:://mounts/dist/....";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].version="1.0";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[n4].description="Packagedescription for " + n4;
-
-		}	    
-	    }
-	}
-    } else {
+    if (resolver != NULL) {
 	int id = 0;
 	for (zypp::ResPool::const_iterator it = resolver->pool().begin();
 	     it != resolver->pool().end();
@@ -202,12 +95,8 @@ SolverTree::SolverTree( QWidget*treeParent,
 		if (rootfound) {
 		    zypp::ResObject::constPtr res = it->resolvable();
 		    QString idStr = QString( "%1" ).arg( id++ );		    
+		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].res = res;
 
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].name=res->name();
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].kind=res->kind().asString();
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].source="";
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].version=res->edition().asString()+"."+res->arch().asString();
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].description=res->description();
 		    // we have found a root; collect all trees
 		    buildTree ( m_Data, m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, *it, id);
 		}
@@ -241,11 +130,7 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	    QString idStr = QString( "%1" ).arg( id++ );
 
 	    childList.append(ResGraphView::targetData(idStr));		    
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].name=it->item->name();
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].kind=it->item->kind().asString();
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].source="";
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].version=it->item->edition().asString()+"."+it->item->arch().asString();
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].description=it->item->description();
+	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].res=it->item;
 
 	    // we have found a root; collect all trees
 	    buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    

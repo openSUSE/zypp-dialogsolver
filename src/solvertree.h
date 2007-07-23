@@ -20,7 +20,7 @@
 #ifndef SOLVERTREE_H
 #define SOLVERTREE_H
 
-#include "zypp/solver/detail/Resolver.h"
+#include "zypp/Resolver.h"
 #include "resgraphview.h"
 
 class StreeData;

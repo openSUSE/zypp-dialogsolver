@@ -31,8 +31,9 @@
  *  Constructs a ResTreeWidget as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
  */
-ResTreeWidget::ResTreeWidget(QWidget* parent, const char* name, WFlags fl )
+ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr r, const char* name, WFlags fl) 
     : QWidget( parent, name, fl )
+      ,resolver(r)
 {
     if ( !name )
         setName( "ResTreeWidget" );
@@ -45,11 +46,25 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, const char* name, WFlags fl )
     m_RevGraphView->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, 0, 2, m_RevGraphView->sizePolicy().hasHeightForWidth() ) );
     connect(m_RevGraphView,SIGNAL(dispDetails(const QString&)),this,SLOT(setDetailText(const QString&)));
 
-    m_Detailstext = new QTextBrowser( m_Splitter, "m_Detailstext" );
-    m_Detailstext->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)7, 0, 0, m_Detailstext->sizePolicy().hasHeightForWidth() ) );
+    tabWidget = new QTabWidget( m_Splitter, "tabwidget" );
+    tabWidget->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)7, 0, 0, tabWidget->sizePolicy().hasHeightForWidth() ) );    
+
+    m_Detailstext = new QTextBrowser( tabWidget, "m_Detailstext" );
     m_Detailstext->setResizePolicy( QTextBrowser::Manual );
-    ResTreeWidgetLayout->addWidget( m_Splitter );
-//    resize( QSize(600, 480).expandedTo(minimumSizeHint()) );
+    tabWidget->addTab( m_Detailstext, "Description" );
+    
+
+    installListView = new QListView( tabWidget, "installListView" );
+    installListView->addColumn( "Name" );
+    installListView->addColumn( "Version" );    
+    tabWidget->addTab( installListView, "Needs" );
+
+    installedListView = new QListView( tabWidget, "installListView" );
+    installedListView->addColumn( "Name" );
+    installedListView->addColumn( "Version" );    
+    tabWidget->addTab( installedListView, "Needed by" );
+    
+    ResTreeWidgetLayout->addWidget(m_Splitter);
     clearWState( WState_Polished );
 }
 
