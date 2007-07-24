@@ -401,7 +401,9 @@ const QString&ResGraphView::getLabelstring(const QString&nodeName)
         return m_LabelMap[""];
     }
 
-    m_LabelMap[nodeName]=it1.data().res->name() + "-" + it1.data().res->edition().asString()+"."+it1.data().res->arch().asString();
+    m_LabelMap[nodeName]=it1.data().item->name() + "-"
+	+ it1.data().item->edition().asString()+"."
+	+ it1.data().item->arch().asString();
     return m_LabelMap[nodeName];
 }
 
@@ -488,10 +490,10 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
     if (it==m_Tree.end()) {
         return res;
     }
-    QStringList sp = QStringList::split("\n",it.data().res->description());
+    QStringList sp = QStringList::split("\n",it.data().item->description());
     QString sm;
     if (sp.count()==0) {
-        sm = it.data().res->description();
+        sm = it.data().item->description();
     } else {
         if (!full) {
             sm = sp[0]+"...";
@@ -512,18 +514,18 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
     res = QString("<html><body>");
 
     if (!full) {
-        res+=QString("<b>%1</b>").arg(it.data().res->name());
+        res+=QString("<b>%1</b>").arg(it.data().item->name());
         res += i18n("<br>Kind: %1<br>Version: %2<br>Source: %3<br>Description: %4</html>")
-            .arg(it.data().res->kind().asString())
-            .arg(it.data().res->edition().asString()+"."+it.data().res->arch().asString())
-            .arg("")
+            .arg(it.data().item->kind().asString())
+            .arg(it.data().item->edition().asString()+"."+it.data().item->arch().asString())
+            .arg(it.data().item->repository().info().alias())
             .arg(sm);
     } else {
-        res+="<table><tr><th colspan=\"2\"><b>"+it.data().res->name()+"</b></th></tr>";
-        res+=rstart;
-        res+=i18n("<b>Kind</b>%1%2%3").arg(csep).arg(it.data().res->kind().asString()).arg(rend);
-        res+=rstart+i18n("<b>Version</b>%1%2%3").arg(csep).arg(it.data().res->edition().asString()+"."+it.data().res->arch().asString()).arg(rend);
-        res+=rstart+i18n("<b>Source</b>%1%2%3").arg(csep).arg("").arg(rend);
+        res+="<table><tr><th colspan=\"2\"></th></tr>";
+        res+=rstart + i18n("<b>Name</b>%1%2%3").arg(csep).arg(it.data().item->name()).arg(rend);	
+        res+=rstart + i18n("<b>Kind</b>%1%2%3").arg(csep).arg(it.data().item->kind().asString()).arg(rend);
+        res+=rstart+i18n("<b>Version</b>%1%2%3").arg(csep).arg(it.data().item->edition().asString()+"."+it.data().item->arch().asString()).arg(rend);
+        res+=rstart+i18n("<b>Source</b>%1%2%3").arg(csep).arg(it.data().item->repository().info().alias()).arg(rend);
         res+=rstart+i18n("<b>Description</b>%1%2%3").arg(csep).arg(sm).arg(rend);
         res+="</table></body></html>";
     }
@@ -721,7 +723,13 @@ void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
             QCanvasItem* i = l.first();
             if (i->rtti()==GRAPHTREE_LABEL) {
                 makeSelected( (GraphTreeLabel*)i);
-                emit dispDetails(toolTip(((GraphTreeLabel*)i)->nodename(),true));
+		
+		trevTree::ConstIterator it;
+		it = m_Tree.find(((GraphTreeLabel*)i)->nodename());
+		if (it!=m_Tree.end()) {
+		    emit dispDetails(toolTip(((GraphTreeLabel*)i)->nodename(),true),
+				     it.data().item);
+		}
             }
         }
     }
@@ -765,6 +773,7 @@ void ResGraphView::contentsContextMenuEvent(QContextMenuEvent* e)
     if (!m_Canvas) return;
     QCanvasItemList l = canvas()->collisions(e->pos());
     QCanvasItem* i = (l.count() == 0) ? 0 : l.first();
+    trevTree::ConstIterator it;
 
     QPopupMenu popup;
     if (i && i->rtti()==GRAPHTREE_LABEL) {
@@ -834,7 +843,11 @@ void ResGraphView::contentsContextMenuEvent(QContextMenuEvent* e)
             makeSelected((GraphTreeLabel*)i);
         break;
         case 403:
-            emit dispDetails(toolTip(((GraphTreeLabel*)i)->nodename(),true));
+	    it = m_Tree.find(((GraphTreeLabel*)i)->nodename());
+	    if (it!=m_Tree.end()) {
+		emit dispDetails(toolTip(((GraphTreeLabel*)i)->nodename(),true),
+				 it.data().item);
+	    }
         break;
         default:
         break;

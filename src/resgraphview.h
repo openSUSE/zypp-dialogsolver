@@ -73,7 +73,7 @@ public:
     typedef QValueList<targetData> tlist;
 
     struct keyData {
-	zypp::ResObject::constPtr res;
+	zypp::PoolItem_Ref item;
         tlist targets;
     };
 
@@ -85,7 +85,7 @@ public:
     void dumpRevtree();
 
 signals:
-    void dispDetails(const QString&);
+    void dispDetails(const QString&, const zypp::PoolItem_Ref);
 
 public slots:
     virtual void contentsMovingSlot(int,int);

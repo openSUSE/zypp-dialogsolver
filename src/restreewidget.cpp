@@ -26,6 +26,9 @@
 #include <qtooltip.h>
 #include <qwhatsthis.h>
 #include "resgraphview.h"
+#include "zypp/Resolver.h"
+
+#define i18n(MSG) QString(MSG)
 
 /*
  *  Constructs a ResTreeWidget as a child of 'parent', with the
@@ -44,7 +47,7 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
 
     m_RevGraphView = new ResGraphView(m_Splitter, "m_RevGraphView" );
     m_RevGraphView->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, 0, 2, m_RevGraphView->sizePolicy().hasHeightForWidth() ) );
-    connect(m_RevGraphView,SIGNAL(dispDetails(const QString&)),this,SLOT(setDetailText(const QString&)));
+    connect(m_RevGraphView,SIGNAL(dispDetails(const QString&, const zypp::PoolItem_Ref)),this,SLOT(setDetailText(const QString&, const zypp::PoolItem_Ref)));
 
     tabWidget = new QTabWidget( m_Splitter, "tabwidget" );
     tabWidget->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)7, 0, 0, tabWidget->sizePolicy().hasHeightForWidth() ) );    
@@ -55,14 +58,18 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     
 
     installListView = new QListView( tabWidget, "installListView" );
-    installListView->addColumn( "Name" );
-    installListView->addColumn( "Version" );    
-    tabWidget->addTab( installListView, "Needs" );
+    installListView->addColumn( i18n("Name") );
+    installListView->addColumn( i18n("Version") );
+    installListView->addColumn( i18n("Dependency") );
+    installListView->addColumn( i18n("Kind") );            
+    tabWidget->addTab( installListView, i18n("Needs") );
 
     installedListView = new QListView( tabWidget, "installListView" );
-    installedListView->addColumn( "Name" );
-    installedListView->addColumn( "Version" );    
-    tabWidget->addTab( installedListView, "Needed by" );
+    installedListView->addColumn( i18n("Name") );
+    installedListView->addColumn( i18n("Version") );
+    installedListView->addColumn( i18n("Dependency") );
+    installedListView->addColumn( i18n("Kind") );            
+    tabWidget->addTab( installedListView, i18n("Needed by") );
     
     ResTreeWidgetLayout->addWidget(m_Splitter);
     clearWState( WState_Polished );
@@ -80,8 +87,32 @@ void ResTreeWidget::dumpRevtree()
     m_RevGraphView->dumpRevtree();
 }
 
-void ResTreeWidget::setDetailText(const QString&_s)
+void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem_Ref item)
 {
+    if (resolver) {
+	zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
+	zypp::solver::detail::ItemCapKindList installedList = resolver->isInstalledBy (item);
+	installListView->clear();
+	installedListView->clear();
+
+	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installedList.begin();
+	     iter != installedList.end(); ++iter) {
+	    QListViewItem *element = new QListViewItem( installedListView,
+							iter->item->name(),
+							iter->item->edition().asString()+"."+iter->item->arch().asString(),
+							iter->cap.asString(),
+							iter->capKind.asString());
+	}
+	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installList.begin();
+	     iter != installList.end(); ++iter) {
+	    QListViewItem *element = new QListViewItem( installListView,
+							iter->item->name(),
+							iter->item->edition().asString()+"."+iter->item->arch().asString(),
+							iter->cap.asString(),
+							iter->capKind.asString());	    
+	}
+    }
+    
     m_Detailstext->setText(_s);
     QValueList<int> list = m_Splitter->sizes();
     if (list.count()!=2) return;

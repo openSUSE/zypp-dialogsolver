@@ -68,7 +68,7 @@ protected:
 
 
 protected slots:
-    virtual void setDetailText(const QString&);
+    virtual void setDetailText(const QString&, const zypp::PoolItem_Ref);
 
 private:
     QPixmap image0;

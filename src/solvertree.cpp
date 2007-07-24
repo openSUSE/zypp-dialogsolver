@@ -66,7 +66,7 @@ SolverTree::SolverTree( QWidget*treeParent,
     m_Data = new StreeData;
 
     m_Data->m_stopTick.restart();
-    m_Data->m_TreeDisplay=new ResTreeWidget(treeParent);
+    m_Data->m_TreeDisplay=new ResTreeWidget(treeParent, resolver);
     m_Data->m_TreeDisplay->setMinimumSize ( 700, 700 );
 
     if (resolver != NULL) {
@@ -93,9 +93,8 @@ SolverTree::SolverTree( QWidget*treeParent,
 		}
 
 		if (rootfound) {
-		    zypp::ResObject::constPtr res = it->resolvable();
 		    QString idStr = QString( "%1" ).arg( id++ );		    
-		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].res = res;
+		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item = *it;
 
 		    // we have found a root; collect all trees
 		    buildTree ( m_Data, m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, *it, id);
@@ -130,7 +129,7 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	    QString idStr = QString( "%1" ).arg( id++ );
 
 	    childList.append(ResGraphView::targetData(idStr));		    
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].res=it->item;
+	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
 
 	    // we have found a root; collect all trees
 	    buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
