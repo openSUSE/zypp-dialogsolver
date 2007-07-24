@@ -515,11 +515,10 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
 
     if (!full) {
         res+=QString("<b>%1</b>").arg(it.data().item->name());
-        res += i18n("<br>Kind: %1<br>Version: %2<br>Source: %3<br>Description: %4</html>")
+        res += i18n("<br>Kind: %1<br>Version: %2<br>Source: %3</html>")
             .arg(it.data().item->kind().asString())
             .arg(it.data().item->edition().asString()+"."+it.data().item->arch().asString())
-            .arg(it.data().item->repository().info().alias())
-            .arg(sm);
+            .arg(it.data().item->repository().info().alias());
     } else {
         res+="<table><tr><th colspan=\"2\"></th></tr>";
         res+=rstart + i18n("<b>Name</b>%1%2%3").arg(csep).arg(it.data().item->name()).arg(rend);	
