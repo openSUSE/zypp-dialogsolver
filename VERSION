@@ -1,1 +1,1 @@
-m4_define([BACKEND_VERSION], [7.1.1.0_0.8])
+m4_define([QDIALOGSOLVER_VERSION], [1.0.0])
