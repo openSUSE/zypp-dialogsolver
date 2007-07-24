@@ -91,11 +91,6 @@ if test -z "$XGETTEXT" ; then
     AC_MSG_ERROR(xgettext is missing; please install gettext-devel.)
 fi
 
-AC_PATH_PROG(MYRUNTEST, runtest)
-if test -z "$MYRUNTEST" ; then
-    AC_MSG_ERROR(runtest is missing; please install dejagnu.)
-fi
-
 dnl ==================================================
 dnl checks for header files
 AC_CHECK_HEADERS([boost/scoped_ptr.hpp],

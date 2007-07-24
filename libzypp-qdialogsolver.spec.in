@@ -1,5 +1,5 @@
 #
-# spec file for package libzypp-zmd-backend (Version 7.1.1.0)
+# spec file for package libzypp-qdialogsolver (Version 1.0.0)
 #
 # Copyright (c) 2006 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -10,46 +10,38 @@
 
 # norootforbuild
 
-Name:           libzypp-zmd-backend
+Name:           libzypp-qdialogsolver
 Version:        @VERSION@
 Release:        0
 License:        GPL
 Group:          System/Management
-Summary:        ZMD backend for Package, Patch, Pattern, and Product Management
+Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`)
-Provides:       zmd-backend
-Provides:       zmd-librc-backend
-Obsoletes:      zmd-librc-backend
+Provides:       libzypp-qdialogsolver 
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  dejagnu gcc-c++ 
+BuildRequires:  gcc-c++ qt3-devel
 
-%if %suse_version > 1010
-BuildRequires:  sqlite-zmd sqlite-zmd-devel
-%else
-BuildRequires:  sqlite sqlite-devel
-%endif
 
 # API Changes in zypp 2.1
 BuildRequires: libzypp-devel >= 2.8.7
 BuildRequires: libzypp >= 2.8.7
 Requires: libzypp >= 2.8.7
 
-Source:         zmd-backend-%{version}.tar.bz2
+Source:        qdialogsolver-%{version}.tar.bz2
 Prefix:         /usr
 
 %description
-This package provides binaries which enable the ZENworks daemon (ZMD)
-to perform its management tasks on the system.
-
+This package provides a QDialog class for showing solver results.
 
 
 Authors:
 --------
-    Klaus Kaempf <kkaempf@suse.de>
+    Rajko Albrecht <ral@alwins-world.de>
+    Stefan Schubert <schubi@suse.de>
 
 %prep
-%setup -q -n zmd-backend-%{version}
+%setup -q -n qdialogsolver-%{version}
 
 %build
 sed -i '/devel\//d' configure.ac
@@ -64,12 +56,6 @@ make %{?jobs:-j %jobs}
 
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/etc/logrotate.d
-install -m 644 logrotate_zmd_backend  $RPM_BUILD_ROOT/etc/logrotate.d/zmd-backend
-
-# bug 256399 - zmd stops working after update
-# we install a fake query system as the solution
-install -m 755 src/query-system.sh  $RPM_BUILD_ROOT/%{_libdir}/zmd/query-system
 
 # Create filelist with translatins
 #%{find_lang} zypp
@@ -79,9 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{_libdir}/libzmd-backend.*
-%dir %{_libdir}/zmd
-%{_libdir}/zmd/*
-%dir %{prefix}/include/zmd-backend
-%{prefix}/include/zmd-backend/*
-/etc/logrotate.d/zmd-backend
+%{_libdir}/libqdialogsolver.*
+%dir %{prefix}/include/zypp
+%{prefix}/include/zypp/*
