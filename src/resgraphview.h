@@ -83,6 +83,7 @@ public:
 
     void setBasePath(const QString&);
     void dumpRevtree();
+    void selectItem(const QString & itemString);
 
 signals:
     void dispDetails(const QString&, const zypp::PoolItem_Ref);

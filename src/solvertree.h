@@ -37,6 +37,7 @@ public:
 
     bool isValid()const;
     QWidget*getView();
+    void selectItem(const zypp::PoolItem_Ref item);
 
 protected:
     bool m_Valid;

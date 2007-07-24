@@ -574,7 +574,7 @@ void ResGraphView::updateSizes(QSize s)
       _cvZoomW = cvZoomW; 
       _cvZoomH = cvZoomH;    
 	
-      if (1) qDebug("Canvas Size: %dx%d, Visible: %dx%d, ZoomH: %f, ZoomW: %f",
+      if (0) qDebug("Canvas Size: %dx%d, Visible: %dx%d, ZoomH: %f, ZoomW: %f",
             m_Canvas->width(), m_Canvas->height(),
             cWidth, cHeight, cvZoomH, cvZoomW);
 
@@ -863,6 +863,18 @@ void ResGraphView::slotClientException(const QString&what)
 {
     QMessageBox::critical(0,"Critical",what, QMessageBox::Ok,
 			  QMessageBox::Cancel);
+}
+
+void ResGraphView::selectItem(const QString & itemString) {
+    QMap<QString,GraphTreeLabel*>::Iterator it;
+    for ( it = m_NodeList.begin(); it != m_NodeList.end(); ++it ) {
+	GraphTreeLabel*tlab = it.data();
+	if (tlab->label() == itemString) break;
+    }
+    if (it!=m_NodeList.end()) {
+	GraphTreeLabel*tlab = it.data();
+	makeSelected(tlab);
+    }
 }
 
 #include "resgraphview.moc"

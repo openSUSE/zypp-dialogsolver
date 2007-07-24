@@ -112,6 +112,10 @@ SolverTree::~SolverTree()
     delete m_Data;
 }
 
+void SolverTree::selectItem(const zypp::PoolItem_Ref item) {
+    m_Data->m_TreeDisplay->selectItem(item);
+}
+
 
 bool SolverTree::isValid()const
 {

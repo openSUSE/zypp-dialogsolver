@@ -54,7 +54,8 @@ public:
 
     QSplitter* m_Splitter;
     ResGraphView* m_RevGraphView;
-    zypp::solver::detail::Resolver_Ptr resolver;    
+    zypp::solver::detail::Resolver_Ptr resolver;
+    void selectItem(const zypp::PoolItem_Ref item);    
 
     void dumpRevtree();
 
@@ -65,10 +66,12 @@ protected:
     QListView *installListView;
     QListView *installedListView;    
     QTextBrowser* m_Detailstext;
+    void selectItem(const QString & itemString);        
 
 
 protected slots:
     virtual void setDetailText(const QString&, const zypp::PoolItem_Ref);
+    void itemSelected( QListViewItem* item);    
 
 private:
     QPixmap image0;

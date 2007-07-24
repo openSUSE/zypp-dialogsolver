@@ -7,13 +7,13 @@
 #include "QZyppSolverDialog.h"
 #include "solvertree.h"
 
-
 QZyppSolverDialog::QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r)
       : QDialog(0,"Solvertree",true)
       , resolver (r)
+      , solvertree(0)
 {
     QHBoxLayout* layout = new QHBoxLayout (this);
-    SolverTree *solvertree = new SolverTree(this, resolver);
+    solvertree = new SolverTree(this, resolver);
     layout->addWidget( solvertree->getView());
 }
 
@@ -21,5 +21,10 @@ QZyppSolverDialog::QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r)
 QZyppSolverDialog::~QZyppSolverDialog()
 {
 }
+
+void QZyppSolverDialog::selectItem(const zypp::PoolItem_Ref item) {
+    solvertree->selectItem(item);
+};
+
 
 #include "QZyppSolverDialog.moc"

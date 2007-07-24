@@ -27,6 +27,7 @@ GraphTreeLabel::GraphTreeLabel(const QString&text, const QString&_nodename,const
     m_Nodename = _nodename;
     m_SourceNode = QString::null;
     setText(0,text);
+    m_Label = text;
     setPosition(0, DrawParams::TopCenter);
     drawFrame(true);
 }
@@ -74,6 +75,12 @@ const QString&GraphTreeLabel::source()const
 {
     return m_SourceNode;
 }
+
+const QString&GraphTreeLabel::label()const
+{
+    return m_Label;
+}
+
 
 void GraphTreeLabel::setSource(const QString&_s)
 {

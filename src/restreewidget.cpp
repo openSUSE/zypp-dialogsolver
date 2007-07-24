@@ -61,15 +61,20 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     installListView->addColumn( i18n("Name") );
     installListView->addColumn( i18n("Version") );
     installListView->addColumn( i18n("Dependency") );
-    installListView->addColumn( i18n("Kind") );            
+    installListView->addColumn( i18n("Kind") );
+    installListView->setAllColumnsShowFocus( TRUE );    
     tabWidget->addTab( installListView, i18n("Needs") );
 
     installedListView = new QListView( tabWidget, "installListView" );
     installedListView->addColumn( i18n("Name") );
     installedListView->addColumn( i18n("Version") );
     installedListView->addColumn( i18n("Dependency") );
-    installedListView->addColumn( i18n("Kind") );            
+    installedListView->addColumn( i18n("Kind") );
+    installedListView->setAllColumnsShowFocus( TRUE );
     tabWidget->addTab( installedListView, i18n("Needed by") );
+
+    connect( installedListView, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
+    connect( installListView, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );        
     
     ResTreeWidgetLayout->addWidget(m_Splitter);
     clearWState( WState_Polished );
@@ -123,6 +128,25 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem_Ref it
         list[1]=th;
         m_Splitter->setSizes(list);
     }
+}
+
+void ResTreeWidget::selectItem(const QString & itemString) {
+    m_RevGraphView->selectItem (itemString );
+}
+
+void ResTreeWidget::selectItem(const zypp::PoolItem_Ref item) {
+    QString itemString = item->name() + "-" + item->edition().asString()
+	+ "."
+	+ item->arch().asString();
+    selectItem (itemString);
+}
+
+void ResTreeWidget::itemSelected( QListViewItem* item) {
+    if ( !item )
+        return;
+    item->setSelected( TRUE );
+    item->repaint();
+    selectItem (item->text( 0 )+"-"+item->text( 1 ) );
 }
 
 #include "restreewidget.moc"
