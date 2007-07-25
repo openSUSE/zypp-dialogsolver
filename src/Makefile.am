@@ -20,11 +20,18 @@ lib_LTLIBRARIES = libqdialogsolver.la
 libqdialogsolver_la_LDFLAGS = -version-info 1:0
 
 libqdialogsolver_la_LIBADD =			\
-	-L$(libdir) 			\
 	-L$(QTLIBDIR) 			\
 	-lX11 -lXext -lSM -lICE
 
 pkginclude_HEADERS = QZyppSolverDialog.h
+noinst_HEADERS = pannerview.h 			\
+	drawparams.h				\
+	graphtree_defines.h			\
+	graphtreelabel.h			\
+	resgraphview.h				\
+	restreewidget.h				\
+	solvertree.h
+
 pkgincludedir = $(includedir)/zypp
 
 libqdialogsolver_la_SOURCES =			\
