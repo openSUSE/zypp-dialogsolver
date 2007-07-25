@@ -3,14 +3,7 @@
 #
 SUBDIRS =
 
-AM_CXXFLAGS = -DQT_THREAD_SUPPORT					\
-	-DLOCALEDIR=\"${localedir}\"				\
-	-DQT_LOCALEDIR=\"$(QTDIR)/translations\"		\
-	-DICONDIR=\"${themedir}/current\"			\
-	-DTHEMEDIR=\"${themedir}/current\"			\
-	-DHELPIMAGEDIR=\"${imagedir}\"				\
-	-DQTLIBDIR=\"$(QTLIBDIR)\"				\
-	-fmessage-length=0
+AM_CXXFLAGS = -DQT_THREAD_SUPPORT
 
 
 MOC = $(QTDIR)/bin/moc
@@ -18,10 +11,6 @@ MOC = $(QTDIR)/bin/moc
 
 lib_LTLIBRARIES = libqdialogsolver.la
 libqdialogsolver_la_LDFLAGS = -version-info 1:0
-
-libqdialogsolver_la_LIBADD =			\
-	-L$(QTLIBDIR) 			\
-	-lX11 -lXext -lSM -lICE
 
 pkginclude_HEADERS = QZyppSolverDialog.h
 noinst_HEADERS = pannerview.h 			\
