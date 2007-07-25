@@ -874,6 +874,14 @@ void ResGraphView::selectItem(const QString & itemString) {
     if (it!=m_NodeList.end()) {
 	GraphTreeLabel*tlab = it.data();
 	makeSelected(tlab);
+	trevTree::ConstIterator it;
+	it = m_Tree.find(tlab->nodename());
+	if (it!=m_Tree.end()) {
+	    emit dispDetails(toolTip(tlab->nodename(),true),
+			     it.data().item);
+	}	
+	setContentsPos (tlab->x() - int(visibleWidth() *_cvZoomW/2),
+			tlab->y() - int(visibleHeight() *_cvZoomH/2));	
     }
 }
 
