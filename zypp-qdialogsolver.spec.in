@@ -17,7 +17,7 @@ License:        GPL
 Group:          System/Management
 Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`)
-Provides:       libzypp-qdialogsolver 
+Provides:       qdialogsolver
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  gcc-c++ qt3-devel
@@ -28,7 +28,7 @@ BuildRequires: libzypp-devel >= 2.8.7
 BuildRequires: libzypp >= 2.8.7
 Requires: libzypp >= 2.8.7
 
-Source:        qdialogsolver-%{version}.tar.bz2
+Source:        zypp-qdialogsolver-%{version}.tar.bz2
 Prefix:         /usr
 
 %description
@@ -41,7 +41,7 @@ Authors:
     Stefan Schubert <schubi@suse.de>
 
 %prep
-%setup -q -n qdialogsolver-%{version}
+%setup -q -n zypp-qdialogsolver-%{version}
 
 %build
 sed -i '/devel\//d' configure.ac
@@ -65,6 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{_libdir}/libqdialogsolver.*
+%{_libdir}/libzypp-qdialogsolver.*
 %dir %{prefix}/include/zypp
 %{prefix}/include/zypp/*
