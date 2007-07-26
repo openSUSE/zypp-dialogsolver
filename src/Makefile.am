@@ -10,7 +10,7 @@ MOC = $(QTDIR)/bin/moc
 
 
 lib_LTLIBRARIES = libqdialogsolver.la
-libqdialogsolver_la_LDFLAGS = -version-info 1:0
+libqdialogsolver_la_LDFLAGS = -version-info 1:0:0
 
 pkginclude_HEADERS = QZyppSolverDialog.h
 noinst_HEADERS = pannerview.h 			\

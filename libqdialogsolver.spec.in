@@ -33,6 +33,14 @@ Prefix:         /usr
 %description
 This package provides a QDialog class for showing solver results.
 
+%package devel
+Requires:       libqdialogsolver == %{version}
+Summary:        Libqdialogsolver - developers files
+Group:          System/Packages
+
+%description -n libqdialogsolver-devel
+This package provides a QDialog class for showing solver results. - developers files
+
 
 Authors:
 --------
@@ -56,6 +64,13 @@ make %{?jobs:-j %jobs}
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 
+%post
+%run_ldconfig
+
+%postun
+%run_ldconfig
+
+
 # Create filelist with translatins
 #%{find_lang} zypp
 
@@ -64,6 +79,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{_libdir}/libqdialogsolver.*
+%{_libdir}/libqdialogsolver*so.*
+
+%files devel
+%defattr(-,root,root)
+%dir %{_libdir}/libqdialogsolver.so
+%dir %{_libdir}/libqdialogsolver.la
 %dir %{prefix}/include/zypp
 %{prefix}/include/zypp/*

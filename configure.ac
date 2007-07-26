@@ -137,7 +137,7 @@ dnl checks for system services
 dnl ==================================================
 dnl AC_CONFIG_FILES([FILE...])
 AC_OUTPUT(Makefile			\
-	qdialogsolver.spec	\
+	libqdialogsolver.spec	\
 	src/Makefile
 )
 dnl ==================================================
