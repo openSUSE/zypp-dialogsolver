@@ -10,7 +10,7 @@
 
 # norootforbuild
 
-Name:           libqdialogsolver
+Name:           libqdialogsolver1
 Version:        @VERSION@
 Release:        0
 License:        GPL
@@ -27,18 +27,18 @@ BuildRequires: libzypp-devel >= 2.8.7
 BuildRequires: libzypp >= 2.8.7
 Requires: libzypp >= 2.8.7
 
-Source:        libqdialogsolver-%{version}.tar.bz2
+Source:        libqdialogsolver1-%{version}.tar.bz2
 Prefix:         /usr
 
 %description
 This package provides a QDialog class for showing solver results.
 
 %package devel
-Requires:       libqdialogsolver == %{version}
+Requires:       libqdialogsolver1 == %{version}
 Summary:        Libqdialogsolver - developers files
-Group:          System/Packages
+Group:          Development/Library/Others
 
-%description -n libqdialogsolver-devel
+%description -n libqdialogsolver1-devel
 This package provides a QDialog class for showing solver results. - developers files
 
 
@@ -48,7 +48,7 @@ Authors:
     Stefan Schubert <schubi@suse.de>
 
 %prep
-%setup -q -n libqdialogsolver-%{version}
+%setup -q -n libqdialogsolver1-%{version}
 
 %build
 sed -i '/devel\//d' configure.ac
