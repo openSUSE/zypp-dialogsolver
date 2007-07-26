@@ -9,8 +9,8 @@ AM_CXXFLAGS = -DQT_THREAD_SUPPORT
 MOC = $(QTDIR)/bin/moc
 
 
-lib_LTLIBRARIES = libzypp-qdialogsolver.la
-libzypp_qdialogsolver_la_LDFLAGS = -version-info 1:0
+lib_LTLIBRARIES = libqdialogsolver.la
+libqdialogsolver_la_LDFLAGS = -version-info 1:0
 
 pkginclude_HEADERS = QZyppSolverDialog.h
 noinst_HEADERS = pannerview.h 			\
@@ -23,7 +23,7 @@ noinst_HEADERS = pannerview.h 			\
 
 pkgincludedir = $(includedir)/zypp
 
-libzypp_qdialogsolver_la_SOURCES =			\
+libqdialogsolver_la_SOURCES =			\
 	drawparams.cpp				\
 	pannerview.cpp				\
 	resgraphview.cpp			\

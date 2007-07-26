@@ -1,5 +1,5 @@
 #
-# spec file for package libzypp-qdialogsolver (Version 1.0.0)
+# spec file for package libqdialogsolver (Version 1.0.0)
 #
 # Copyright (c) 2006 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -10,14 +10,13 @@
 
 # norootforbuild
 
-Name:           libzypp-qdialogsolver
+Name:           libqdialogsolver
 Version:        @VERSION@
 Release:        0
 License:        GPL
 Group:          System/Management
 Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`)
-Provides:       qdialogsolver
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  gcc-c++ qt3-devel
@@ -28,7 +27,7 @@ BuildRequires: libzypp-devel >= 2.8.7
 BuildRequires: libzypp >= 2.8.7
 Requires: libzypp >= 2.8.7
 
-Source:        zypp-qdialogsolver-%{version}.tar.bz2
+Source:        libqdialogsolver-%{version}.tar.bz2
 Prefix:         /usr
 
 %description
@@ -41,7 +40,7 @@ Authors:
     Stefan Schubert <schubi@suse.de>
 
 %prep
-%setup -q -n zypp-qdialogsolver-%{version}
+%setup -q -n libqdialogsolver-%{version}
 
 %build
 sed -i '/devel\//d' configure.ac
@@ -65,6 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{_libdir}/libzypp-qdialogsolver.*
+%{_libdir}/libqdialogsolver.*
 %dir %{prefix}/include/zypp
 %{prefix}/include/zypp/*

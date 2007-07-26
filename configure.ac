@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl ==================================================
 m4_include([VERSION])
-AC_INIT(zypp-qdialogsolver,[QDIALOGSOLVER_VERSION])
+AC_INIT(libqdialogsolver,[QDIALOGSOLVER_VERSION])
 AC_CONFIG_SRCDIR(src/Makefile.am)
 
 AC_PREFIX_DEFAULT(/usr)
@@ -137,7 +137,7 @@ dnl checks for system services
 dnl ==================================================
 dnl AC_CONFIG_FILES([FILE...])
 AC_OUTPUT(Makefile			\
-	zypp-qdialogsolver.spec	\
+	qdialogsolver.spec	\
 	src/Makefile
 )
 dnl ==================================================
