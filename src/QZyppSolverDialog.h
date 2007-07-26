@@ -6,6 +6,15 @@
 
 class SolverTree;
 
+  ///////////////////////////////////////////////////////////////////
+  //
+  //	CLASS NAME : QZyppSolverDialog
+  //
+  /**
+   * Modal QDialog class which shows the solver result in
+   * a graphical view.
+   */
+
 class QZyppSolverDialog : public QDialog{
     Q_OBJECT
 
@@ -14,10 +23,20 @@ protected:
     SolverTree *solvertree;
 
 public:
+    /** Constructor
+     * \param Resolver pointer of a valid solver run
+    */    
      QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r = NULL);
+    
+    /** ctor
+    */    
     ~QZyppSolverDialog();
 
+    /** Selecting one item in the solvertree
+     * \param \ref item which will be selected
+    */        
     void selectItem(const zypp::PoolItem_Ref item);
+    
 private:
     QZyppSolverDialog&
     operator = (const QZyppSolverDialog &zyppSolverDialog);
