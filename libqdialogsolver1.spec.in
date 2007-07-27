@@ -16,7 +16,7 @@ Release:        0
 License:        GPL
 Group:          System/Management
 Summary:        QDialog class for showing solver results
-Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`)
+Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`) graphviz
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  gcc-c++ qt3-devel
@@ -25,7 +25,7 @@ BuildRequires:  gcc-c++ qt3-devel
 # API Changes in zypp 2.1
 BuildRequires: libzypp-devel >= 2.8.7
 BuildRequires: libzypp >= 2.8.7
-Requires: libzypp >= 2.8.7
+Requires: libzypp >= 2.8.7 
 
 Source:        libqdialogsolver1-%{version}.tar.bz2
 Prefix:         /usr
