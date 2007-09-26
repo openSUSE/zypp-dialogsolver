@@ -51,7 +51,8 @@ public:
     enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
     /* avoid large copy operations */
     friend class RevisionTree;
-    friend class SolverTree;    
+    friend class SolverTree;
+    friend class ResTreeWidget;
 
     ResGraphView(QWidget * parent = 0, const char * name = 0, WFlags f = 0);
     virtual ~ResGraphView();

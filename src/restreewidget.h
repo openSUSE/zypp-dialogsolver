@@ -38,6 +38,10 @@ class QSpacerItem;
 class ResGraphView;
 class QSplitter;
 class QTextBrowser;
+class QVBox;
+class QHBox;
+class QComboBox;
+class QLabel;
 
 namespace svn {
     class LogEntry;
@@ -61,18 +65,22 @@ public:
 
 protected:
     QVBoxLayout* ResTreeWidgetLayout;
-    
+    QVBox *descriptionBox;
+    QHBox *searchBox;
+    QLabel *searchLabel;
     QTabWidget *tabWidget;
     QListView *installListView;
     QListView *installedListView;    
     QTextBrowser* m_Detailstext;
+    QComboBox *resolvableList;
     void selectItem(const QString & itemString);        
 
 
 protected slots:
     virtual void setDetailText(const QString&, const zypp::PoolItem_Ref);
     void itemSelected( QListViewItem* item);    
-
+    void slotComboActivated( const QString &s );
+    
 private:
     QPixmap image0;
 
