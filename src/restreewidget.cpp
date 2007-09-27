@@ -62,13 +62,13 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     searchBox = new QHBox( descriptionBox, "searchBox");
     searchBox->setSpacing (5);
     searchLabel = new QLabel (i18n("Search: "), searchBox);
+    searchLabel->setMaximumSize( searchLabel->minimumSizeHint () );
     resolvableList = new QComboBox( true, searchBox);
     resolvableList->setAutoCompletion(true);
 
     m_Detailstext = new QTextBrowser( tabWidget, "m_Detailstext" );
     m_Detailstext->setResizePolicy( QTextBrowser::Manual );
     tabWidget->addTab( m_Detailstext, i18n("Description") );
-    
 
     installListView = new QListView( tabWidget, "installListView" );
     installListView->addColumn( i18n("Name") );
