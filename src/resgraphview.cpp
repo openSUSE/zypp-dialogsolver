@@ -741,10 +741,11 @@ void ResGraphView::contentsMousePressEvent ( QMouseEvent * e )
     _lastPos = e->globalPos();
 }
 
-void ResGraphView::contentsMouseReleaseEvent ( QMouseEvent * )
+void ResGraphView::contentsMouseReleaseEvent ( QMouseEvent * e)
 {
     _isMoving = false;
     updateZoomerPos();
+    contentsMouseDoubleClickEvent (e);
 }
 
 void ResGraphView::contentsMouseMoveEvent ( QMouseEvent * e )

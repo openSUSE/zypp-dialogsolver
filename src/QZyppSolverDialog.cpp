@@ -8,6 +8,8 @@
 #include "QZyppSolverDialog.h"
 #include "solvertree.h"
 
+#define i18n(MSG) QString(MSG)
+
 QZyppSolverDialog::QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r)
       : QDialog(0,"Solvertree",true)
       , resolver (r)
@@ -20,8 +22,8 @@ QZyppSolverDialog::QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r)
     if (resolver == NULL
 	|| (resolver->problems()).size() > 0 ) {
 	QMessageBox::critical( 0,
-			       "Critical Error" ,
-			       "No valid solver result");
+			       i18n("Critical Error") ,
+			       i18n("No valid solver result"));
     }
 }
 

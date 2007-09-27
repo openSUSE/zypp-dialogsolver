@@ -86,8 +86,8 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     installedListView->setAllColumnsShowFocus( TRUE );
     tabWidget->addTab( installedListView, i18n("Needed by") );
 
-    connect( installedListView, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
-    connect( installListView, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
+    connect( installedListView, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
+    connect( installListView, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
     connect( resolvableList, SIGNAL( activated( const QString & ) ), this, SLOT( slotComboActivated( const QString & ) ) );    
     
     ResTreeWidgetLayout->addWidget(m_Splitter);
