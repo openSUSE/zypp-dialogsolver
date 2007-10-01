@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+#include "QZyppSolverDialog.h"
 #include "resgraphview.h"
 #include "graphtreelabel.h"
 #include "pannerview.h"
@@ -30,16 +31,21 @@
 #include <qmessagebox.h>
 #include <qfiledialog.h>
 #include <qcstring.h>
+#include <qcursor.h>
 
 #include <math.h>
 
 #include <zypp/Pathname.h>
 #include <zypp/TmpPath.h>
-
+#include "zypp/ZYppFactory.h"
+#include "zypp/ResFilters.h"
+#include "zypp/base/Algorithm.h"
 
 #define LABEL_WIDTH 160
 #define LABEL_HEIGHT 90
 #define i18n(MSG) QString(MSG)
+
+using namespace zypp;
 
 static int globalDirection = 0;
 
@@ -713,9 +719,73 @@ void ResGraphView::makeSelected(GraphTreeLabel*gtl)
     m_CompleteView->updateCurrentRect();
 }
 
+
+struct UndoTransact : public resfilter::PoolItemFilterFunctor
+{
+    ResStatus::TransactByValue resStatus;
+    UndoTransact ( const ResStatus::TransactByValue &status)
+	:resStatus(status)
+    { }
+
+    bool operator()( PoolItem_Ref item )		// only transacts() items go here
+    {
+	item.status().resetTransact( resStatus );// clear any solver/establish transactions
+	return true;
+    }
+};
+
+
 void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 {
     setFocus();
+    if (e->button() == Qt::LeftButton) {
+        QCanvasItemList l = canvas()->collisions(e->pos());
+        if (l.count()>0) {
+            QCanvasItem* i = l.first();
+            if (i->rtti()==GRAPHTREE_LABEL) {
+		trevTree::ConstIterator it;
+		it = m_Tree.find(((GraphTreeLabel*)i)->nodename());
+		if (it!=m_Tree.end()) {
+		    zypp::ResPool pool( zypp::getZYpp()->pool() );
+		    const QCursor oldCursor = cursor ();
+		    setCursor (Qt::WaitCursor); 		    
+		    // resetting all selections
+		    UndoTransact resetting (ResStatus::USER);
+		    invokeOnEach ( pool.begin(), pool.end(),
+				   resfilter::ByTransact( ),			// Resetting all transcations
+				   functor::functorRef<bool,PoolItem>(resetting) );
+
+		    // set the selected item for installation only
+		    it.data().item.status().setToBeInstalled( ResStatus::USER);
+		    // and resolve		    
+		    zypp::solver::detail::Resolver_Ptr resolver = new zypp::solver::detail::Resolver( pool );
+		    resolver->resolvePool();
+		    // show the results
+		    QZyppSolverDialog *dialog = new QZyppSolverDialog(resolver);
+		    dialog->setCaption(getLabelstring(((GraphTreeLabel*)i)->nodename()));
+		    dialog->setMinimumSize ( 600, 600 );
+		    setCursor (oldCursor);
+		    dialog->exec();		    
+		}
+            }
+        }
+    }    
+
+    
+
+}
+
+void ResGraphView::contentsMousePressEvent ( QMouseEvent * e )
+{
+    setFocus();
+    _isMoving = true;
+    _lastPos = e->globalPos();
+}
+
+void ResGraphView::contentsMouseReleaseEvent ( QMouseEvent * e)
+{
+    _isMoving = false;
+    updateZoomerPos();
     if (e->button() == Qt::LeftButton) {
         QCanvasItemList l = canvas()->collisions(e->pos());
         if (l.count()>0) {
@@ -731,21 +801,7 @@ void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 		}
             }
         }
-    }
-}
-
-void ResGraphView::contentsMousePressEvent ( QMouseEvent * e )
-{
-    setFocus();
-    _isMoving = true;
-    _lastPos = e->globalPos();
-}
-
-void ResGraphView::contentsMouseReleaseEvent ( QMouseEvent * e)
-{
-    _isMoving = false;
-    updateZoomerPos();
-    contentsMouseDoubleClickEvent (e);
+    }    
 }
 
 void ResGraphView::contentsMouseMoveEvent ( QMouseEvent * e )
