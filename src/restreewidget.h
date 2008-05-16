@@ -59,7 +59,7 @@ public:
     QSplitter* m_Splitter;
     ResGraphView* m_RevGraphView;
     zypp::solver::detail::Resolver_Ptr resolver;
-    void selectItem(const zypp::PoolItem_Ref item);    
+    void selectItem(const zypp::PoolItem item);    
 
     void dumpRevtree();
 
@@ -77,7 +77,7 @@ protected:
 
 
 protected slots:
-    virtual void setDetailText(const QString&, const zypp::PoolItem_Ref);
+    virtual void setDetailText(const QString&, const zypp::PoolItem);
     void itemSelected( QListViewItem* item);    
     void slotComboActivated( const QString &s );
     

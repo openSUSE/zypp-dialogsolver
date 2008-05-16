@@ -52,7 +52,7 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
 
     m_RevGraphView = new ResGraphView(m_Splitter, "m_RevGraphView" );
     m_RevGraphView->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, 0, 2, m_RevGraphView->sizePolicy().hasHeightForWidth() ) );
-    connect(m_RevGraphView,SIGNAL(dispDetails(const QString&, const zypp::PoolItem_Ref)),this,SLOT(setDetailText(const QString&, const zypp::PoolItem_Ref)));
+    connect(m_RevGraphView,SIGNAL(dispDetails(const QString&, const zypp::PoolItem)),this,SLOT(setDetailText(const QString&, const zypp::PoolItem)));
 
     descriptionBox = new QVBox( m_Splitter, "descriptionBox");
     descriptionBox->setSpacing (5);
@@ -111,7 +111,7 @@ void ResTreeWidget::dumpRevtree()
 	QStringList stringList;
 	for (it=m_RevGraphView->m_Tree.begin();
 	     it!=m_RevGraphView->m_Tree.end();++it) {
-	    zypp::PoolItem_Ref item = it.data().item;
+	    zypp::PoolItem item = it.data().item;
 	    QString itemString = item->name() + "-" + item->edition().asString()
 		+ "."
 		+ item->arch().asString();
@@ -123,7 +123,7 @@ void ResTreeWidget::dumpRevtree()
     }
 }
 
-void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem_Ref item)
+void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 {
     if (resolver) {
 	zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
@@ -169,7 +169,7 @@ void ResTreeWidget::selectItem(const QString & itemString) {
     m_RevGraphView->selectItem (itemString );
 }
 
-void ResTreeWidget::selectItem(const zypp::PoolItem_Ref item) {
+void ResTreeWidget::selectItem(const zypp::PoolItem item) {
     QString itemString = item->name() + "-" + item->edition().asString()
 	+ "."
 	+ item->arch().asString();

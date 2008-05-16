@@ -35,7 +35,7 @@ public:
     /** Selecting one item in the solvertree
      * \param \ref item which will be selected
     */        
-    void selectItem(const zypp::PoolItem_Ref item);
+    void selectItem(const zypp::PoolItem item);
     
 private:
     QZyppSolverDialog&

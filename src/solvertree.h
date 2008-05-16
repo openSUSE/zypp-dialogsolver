@@ -37,14 +37,14 @@ public:
 
     bool isValid()const;
     QWidget*getView();
-    void selectItem(const zypp::PoolItem_Ref item);
+    void selectItem(const zypp::PoolItem item);
 
 protected:
     bool m_Valid;
     zypp::solver::detail::Resolver_Ptr resolver;
     StreeData*m_Data;
 
-    void buildTree ( StreeData *data, ResGraphView::tlist &childList, const zypp::PoolItem_Ref item, int &id);
+    void buildTree ( StreeData *data, ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
 
 };
 

@@ -112,7 +112,7 @@ SolverTree::~SolverTree()
     delete m_Data;
 }
 
-void SolverTree::selectItem(const zypp::PoolItem_Ref item) {
+void SolverTree::selectItem(const zypp::PoolItem item) {
     m_Data->m_TreeDisplay->selectItem(item);
 }
 
@@ -123,7 +123,7 @@ bool SolverTree::isValid()const
 }
 
 
-void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, const zypp::PoolItem_Ref item, int &id) {
+void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
     // generate the branches
     zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
     for (zypp::solver::detail::ItemCapKindList::const_iterator it = installList.begin();

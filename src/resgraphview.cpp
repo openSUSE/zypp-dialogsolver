@@ -727,7 +727,7 @@ struct UndoTransact : public resfilter::PoolItemFilterFunctor
 	:resStatus(status)
     { }
 
-    bool operator()( PoolItem_Ref item )		// only transacts() items go here
+    bool operator()( PoolItem item )		// only transacts() items go here
     {
 	item.status().resetTransact( resStatus );// clear any solver/establish transactions
 	return true;

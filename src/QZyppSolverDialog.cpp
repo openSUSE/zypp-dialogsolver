@@ -32,7 +32,7 @@ QZyppSolverDialog::~QZyppSolverDialog()
 {
 }
 
-void QZyppSolverDialog::selectItem(const zypp::PoolItem_Ref item) {
+void QZyppSolverDialog::selectItem(const zypp::PoolItem item) {
     solvertree->selectItem(item);
 };
 

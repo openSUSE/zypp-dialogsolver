@@ -74,7 +74,7 @@ public:
     typedef QValueList<targetData> tlist;
 
     struct keyData {
-	zypp::PoolItem_Ref item;
+	zypp::PoolItem item;
         tlist targets;
     };
 
@@ -87,7 +87,7 @@ public:
     void selectItem(const QString & itemString);
 
 signals:
-    void dispDetails(const QString&, const zypp::PoolItem_Ref);
+    void dispDetails(const QString&, const zypp::PoolItem);
 
 public slots:
     virtual void contentsMovingSlot(int,int);
