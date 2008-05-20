@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue May 20 09:10:05 CEST 2008 - schubi@suse.de
+
+- adapt to the new SAT solver
+- version 1.0.3 
+
+-------------------------------------------------------------------
 Mon Oct  1 12:22:35 CEST 2007 - schubi@suse.de
 
 - can through the tree via double click 
