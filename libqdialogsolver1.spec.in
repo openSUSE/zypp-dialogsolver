@@ -63,9 +63,11 @@ make %{?jobs:-j %jobs}
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
+%post
+%run_ldconfig
 
-%postun -p /sbin/ldconfig
+%postun
+%run_ldconfig
 
 # Create filelist with translatins
 #%{find_lang} zypp
