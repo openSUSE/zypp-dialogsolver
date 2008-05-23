@@ -24,7 +24,6 @@ BuildRequires:  gcc-c++ qt3-devel
 
 # API Changes in zypp 2.1
 BuildRequires: libzypp-devel >= 2.8.7
-Requires: libzypp >= 2.8.7 
 
 Source:        libqdialogsolver1-%{version}.tar.bz2
 Prefix:         /usr
@@ -63,14 +62,9 @@ make %{?jobs:-j %jobs}
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 
-%post
-%run_ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-%run_ldconfig
-
-# Create filelist with translatins
-#%{find_lang} zypp
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
