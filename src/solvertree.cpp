@@ -136,7 +136,8 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
 
 	    // we have found a root; collect all trees
-	    buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
+	    if (it->item != item)
+		buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
 	}
     }    
 }
