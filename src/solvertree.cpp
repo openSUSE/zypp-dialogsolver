@@ -135,8 +135,10 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	    childList.append(ResGraphView::targetData(idStr));		    
 	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
 
+	    alreadyHitItems.insert (item);
+
 	    // we have found a root; collect all trees
-	    if (it->item != item)
+	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end())
 		buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
 	}
     }    

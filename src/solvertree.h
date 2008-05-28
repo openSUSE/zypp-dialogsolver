@@ -29,6 +29,9 @@ class QWidget;
 /**
 	@author Rajko Albrecht <ral@alwins-world.de>
 */
+
+typedef std::set<zypp::PoolItem> PoolItemSet;
+
 class SolverTree{
 public:
     SolverTree( QWidget*treeParent,
@@ -43,7 +46,7 @@ protected:
     bool m_Valid;
     zypp::solver::detail::Resolver_Ptr resolver;
     StreeData*m_Data;
-
+    PoolItemSet alreadyHitItems;
     void buildTree ( StreeData *data, ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
 
 };
