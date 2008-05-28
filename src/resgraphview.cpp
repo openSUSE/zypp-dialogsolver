@@ -367,30 +367,13 @@ QColor ResGraphView::getBgColor(const QString&nodeName)const
     if (it==m_Tree.end()) {
         return res;
     }
-#if 0
-    switch (it.data().Action) {
-        case 'D':
-            res = Kdesvnsettings::tree_delete_color();
-            break;
-        case 'R':
-        case 'M':
-            res = Kdesvnsettings::tree_modify_color();
-            break;
-        case 'A':
-            res = Kdesvnsettings::tree_add_color();
-            break;
-        case 'C':
-        case 1:
-            res = Kdesvnsettings::tree_copy_color();
-            break;
-        case 2:
-            res = Kdesvnsettings::tree_rename_color();
-            break;
-        default:
-            res = Kdesvnsettings::tree_modify_color();
-            break;
-    }
-#endif
+
+    if (it.data().item->isKind( ResKind::product )) 
+	return Qt::blue;
+
+    if (it.data().item->isKind( ResKind::pattern )) 
+	return Qt::green;
+	
     return res;
 }
 
