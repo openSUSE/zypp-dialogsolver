@@ -363,18 +363,16 @@ QColor ResGraphView::getBgColor(const QString&nodeName)const
 {
     trevTree::ConstIterator it;
     it = m_Tree.find(nodeName);
-    QColor res = Qt::white;
-    if (it==m_Tree.end()) {
-        return res;
-    }
-
+    if (it==m_Tree.end())
+        return Qt::white;
     if (it.data().item->isKind( ResKind::product )) 
 	return Qt::blue;
-
     if (it.data().item->isKind( ResKind::pattern )) 
 	return Qt::green;
-	
-    return res;
+    if (it.data().item->isKind( ResKind::patch )) 
+	return Qt::yellow;
+    
+    return Qt::white;
 }
 
 const QString&ResGraphView::getLabelstring(const QString&nodeName)
