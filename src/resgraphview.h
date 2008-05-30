@@ -75,6 +75,7 @@ public:
 
     struct keyData {
 	zypp::PoolItem item;
+	zypp::solver::detail::ItemCapKind dueto; // initial item/capability
         tlist targets;
     };
 
@@ -106,9 +107,10 @@ protected:
     QString dotOutput;
     QProcess*renderProcess;
     trevTree m_Tree;
-    QColor getBgColor(const QString&nodeName)const;
-    bool isStart(const QString&nodeName)const;
     const QString&getLabelstring(const QString&nodeName);
+    QColor getBgColor(const QString&nodeName)const;
+    bool isRecommended(const QString&nodeName)const;
+    bool isStart(const QString&nodeName)const;
 
     QMap<QString,GraphTreeLabel*> m_NodeList;
     QMap<QString,QString> m_LabelMap;

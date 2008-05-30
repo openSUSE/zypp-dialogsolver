@@ -274,6 +274,8 @@ void ResGraphView::dotExit()
 
             GraphEdge * n = new GraphEdge(m_Canvas);
             QColor arrowColor = Qt::black;
+	    if (isRecommended(node2Name))
+		arrowColor = Qt::green;
             n->setPen(QPen(arrowColor,1));
             n->setControlPoints(pa,false);
             n->setZ(0.5);
@@ -366,9 +368,9 @@ QColor ResGraphView::getBgColor(const QString&nodeName)const
     if (it==m_Tree.end())
         return Qt::white;
     if (it.data().item->isKind( ResKind::product )) 
-	return Qt::blue;
+	return Qt::magenta;
     if (it.data().item->isKind( ResKind::pattern )) 
-	return Qt::green;
+	return Qt::blue;
     if (it.data().item->isKind( ResKind::patch )) 
 	return Qt::yellow;
     
@@ -394,13 +396,31 @@ const QString&ResGraphView::getLabelstring(const QString&nodeName)
     return m_LabelMap[nodeName];
 }
 
+
+bool ResGraphView::isRecommended(const QString&nodeName)const
+{
+    trevTree::ConstIterator it;
+    it = m_Tree.find(nodeName);
+    if (it==m_Tree.end())
+        return false;
+
+    zypp::solver::detail::ItemCapKind dueto = it.data().dueto;
+
+    if (dueto.capKind == Dep::SUPPLEMENTS
+	|| dueto.capKind == Dep::RECOMMENDS) {
+	return true;
+    }
+    return false;
+}
+
+
 void ResGraphView::dumpRevtree()
 {
 
     delete dotTmpFile;
     clear();
     dotOutput = "";
-    QString filename = zypp::filesystem::TmpFile().path().asString();
+    QString filename = "/tmp/tmp.dot"; //zypp::filesystem::TmpFile().path().asString();
     dotTmpFile = new QFile(filename);
 
     if (!dotTmpFile->open(IO_ReadWrite)) {
@@ -443,7 +463,9 @@ void ResGraphView::dumpRevtree()
         for (unsigned j=0;j<it1.data().targets.count();++j) {
             stream<<"  "<<it1.key().latin1()<< " "
                 << "->"<<" "<<it1.data().targets[j].key
-                << " [fontsize=10,style=\"solid\"];\n";
+                << " [fontsize=10,style=\"solid\""
+		  << " color=\"" << (isRecommended(it1.data().targets[j].key) ? "green" : "black") 
+		<< "\"];\n";
         }
     }
     stream << "}\n"<<flush;

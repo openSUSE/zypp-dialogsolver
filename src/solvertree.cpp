@@ -134,6 +134,7 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 
 	    childList.append(ResGraphView::targetData(idStr));		    
 	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
+	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].dueto = *it;
 
 	    alreadyHitItems.insert (item);
 
