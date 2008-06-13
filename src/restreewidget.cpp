@@ -21,15 +21,16 @@
 
 #include <qvariant.h>
 #include <qsplitter.h>
-#include <qtextbrowser.h>
+#include <q3textbrowser.h>
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <qwhatsthis.h>
-#include <qhbox.h>
-#include <qvbox.h>
+#include <q3hbox.h>
+#include <q3vbox.h>
 #include <qcombobox.h>
 #include <qlabel.h>
 #include <qstringlist.h>
+#include <qnamespace.h>
 #include "resgraphview.h"
 #include "zypp/Resolver.h"
 
@@ -39,7 +40,7 @@
  *  Constructs a ResTreeWidget as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
  */
-ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr r, const char* name, WFlags fl) 
+ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr r, const char* name, Qt::WFlags fl) 
     : QWidget( parent, name, fl )
       ,resolver(r)
 {
@@ -48,29 +49,29 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     ResTreeWidgetLayout = new QVBoxLayout( this, 11, 6, "ResTreeWidgetLayout");
 
     m_Splitter = new QSplitter( this, "m_Splitter" );
-    m_Splitter->setOrientation( QSplitter::Vertical );
+    m_Splitter->setOrientation( Qt::Vertical );
 
     m_RevGraphView = new ResGraphView(m_Splitter, "m_RevGraphView" );
     m_RevGraphView->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, 0, 2, m_RevGraphView->sizePolicy().hasHeightForWidth() ) );
     connect(m_RevGraphView,SIGNAL(dispDetails(const QString&, const zypp::PoolItem)),this,SLOT(setDetailText(const QString&, const zypp::PoolItem)));
 
-    descriptionBox = new QVBox( m_Splitter, "descriptionBox");
+    descriptionBox = new Q3VBox( m_Splitter, "descriptionBox");
     descriptionBox->setSpacing (5);
     tabWidget = new QTabWidget( descriptionBox, "tabWidget");
     tabWidget->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)7, 0, 0, tabWidget->sizePolicy().hasHeightForWidth() ) );
 
-    searchBox = new QHBox( descriptionBox, "searchBox");
+    searchBox = new Q3HBox( descriptionBox, "searchBox");
     searchBox->setSpacing (5);
     searchLabel = new QLabel (i18n("Search: "), searchBox);
     searchLabel->setMaximumSize( searchLabel->minimumSizeHint () );
     resolvableList = new QComboBox( true, searchBox);
     resolvableList->setAutoCompletion(true);
 
-    m_Detailstext = new QTextBrowser( tabWidget, "m_Detailstext" );
-    m_Detailstext->setResizePolicy( QTextBrowser::Manual );
+    m_Detailstext = new Q3TextBrowser( tabWidget, "m_Detailstext" );
+    m_Detailstext->setResizePolicy( Q3TextBrowser::Manual );
     tabWidget->addTab( m_Detailstext, i18n("Description") );
 
-    installListView = new QListView( tabWidget, "installListView" );
+    installListView = new Q3ListView( tabWidget, "installListView" );
     installListView->addColumn( i18n("Name") );
     installListView->addColumn( i18n("Version") );
     installListView->addColumn( i18n("Dependency") );
@@ -78,7 +79,7 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     installListView->setAllColumnsShowFocus( TRUE );    
     tabWidget->addTab( installListView, i18n("Needs") );
 
-    installedListView = new QListView( tabWidget, "installListView" );
+    installedListView = new Q3ListView( tabWidget, "installListView" );
     installedListView->addColumn( i18n("Name") );
     installedListView->addColumn( i18n("Version") );
     installedListView->addColumn( i18n("Dependency") );
@@ -86,12 +87,12 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     installedListView->setAllColumnsShowFocus( TRUE );
     tabWidget->addTab( installedListView, i18n("Needed by") );
 
-    connect( installedListView, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
-    connect( installListView, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( itemSelected( QListViewItem* ) ) );
+    connect( installedListView, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( itemSelected( Q3ListViewItem* ) ) );
+    connect( installListView, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( itemSelected( Q3ListViewItem* ) ) );
     connect( resolvableList, SIGNAL( activated( const QString & ) ), this, SLOT( slotComboActivated( const QString & ) ) );    
     
     ResTreeWidgetLayout->addWidget(m_Splitter);
-    clearWState( WState_Polished );
+    
 }
 
 /*
@@ -112,9 +113,11 @@ void ResTreeWidget::dumpRevtree()
 	for (it=m_RevGraphView->m_Tree.begin();
 	     it!=m_RevGraphView->m_Tree.end();++it) {
 	    zypp::PoolItem item = it.data().item;
-	    QString itemString = item->name() + "-" + item->edition().asString()
-		+ "."
-		+ item->arch().asString();
+	    QString itemString = item->name().c_str();
+	    itemString += "-";
+	    itemString += item->edition().asString().c_str();
+	    itemString += ".";
+	    itemString += item->arch().asString().c_str();
 	    if (stringList.find(itemString) == stringList.end())
 		stringList.append (itemString);
 	}
@@ -133,24 +136,31 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 
 	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installedList.begin();
 	     iter != installedList.end(); ++iter) {
-	    QListViewItem *element = new QListViewItem( installedListView,
-							iter->item->name(),
-							iter->item->edition().asString()+"."+iter->item->arch().asString(),
-							iter->cap.asString(),
-							iter->capKind.asString());
+	    QString edition = iter->item->edition().asString().c_str();
+	    edition += ".";
+	    edition += iter->item->arch().asString().c_str();
+
+	    Q3ListViewItem *element = new Q3ListViewItem( installedListView,
+							QString(iter->item->name().c_str()),
+							edition,
+							QString(iter->cap.asString().c_str()),
+							QString(iter->capKind.asString().c_str()));
 	}
 	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installList.begin();
 	     iter != installList.end(); ++iter) {
-	    QListViewItem *element = new QListViewItem( installListView,
-							iter->item->name(),
-							iter->item->edition().asString()+"."+iter->item->arch().asString(),
-							iter->cap.asString(),
-							iter->capKind.asString());	    
+	    QString edition = iter->item->edition().asString().c_str();
+	    edition += ".";
+	    edition += iter->item->arch().asString().c_str();
+	    Q3ListViewItem *element = new Q3ListViewItem( installListView,
+							QString(iter->item->name().c_str()),
+							edition,  
+							QString(iter->cap.asString().c_str()),
+							QString(iter->capKind.asString().c_str()));	    
 	}
     }
     
     m_Detailstext->setText(_s);
-    QValueList<int> list = m_Splitter->sizes();
+    Q3ValueList<int> list = m_Splitter->sizes();
     if (list.count()!=2) return;
     if (list[1]==0) {
         int h = height();
@@ -170,13 +180,15 @@ void ResTreeWidget::selectItem(const QString & itemString) {
 }
 
 void ResTreeWidget::selectItem(const zypp::PoolItem item) {
-    QString itemString = item->name() + "-" + item->edition().asString()
-	+ "."
-	+ item->arch().asString();
+    QString itemString = item->name().c_str();
+    itemString += "-";
+    itemString += item->edition().asString().c_str();
+    itemString += ".";
+    itemString += item->arch().asString().c_str();
     selectItem (itemString);
 }
 
-void ResTreeWidget::itemSelected( QListViewItem* item) {
+void ResTreeWidget::itemSelected( Q3ListViewItem* item) {
     if ( !item )
         return;
     item->setSelected( TRUE );

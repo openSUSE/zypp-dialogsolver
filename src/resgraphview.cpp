@@ -22,16 +22,19 @@
 #include "graphtreelabel.h"
 #include "pannerview.h"
 #include "graphtree_defines.h"
-#include <qprocess.h>
+#include <q3process.h>
 #include <qtooltip.h>
 #include <qwmatrix.h>
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qpainter.h>
 #include <qregexp.h>
 #include <qmessagebox.h>
 #include <qfiledialog.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qcursor.h>
+#include <qdesktopwidget.h>
+#include <qtextstream.h>
+#include <qevent.h>
 
 #include <math.h>
 
@@ -49,10 +52,10 @@ using namespace zypp;
 
 static int globalDirection = 0;
 
-class GraphViewTipSolver:public QToolTip
+class GraphViewTipSolver
 {
 public:
-  GraphViewTipSolver( QWidget* p ):QToolTip(p) {}
+  GraphViewTipSolver( QWidget* p ){}
   virtual ~GraphViewTipSolver(){}
 
 protected:
@@ -61,12 +64,13 @@ protected:
 
 void GraphViewTipSolver::maybeTip( const QPoint & pos)
 {
+#if 0
     if (!parentWidget()->inherits( "ResGraphView" )) return;
     ResGraphView* cgv = (ResGraphView*)parentWidget();
     QPoint cPos = cgv->viewportToContents(pos);
-    QCanvasItemList l = cgv->canvas()->collisions(cPos);
+    Q3CanvasItemList l = cgv->canvas()->collisions(cPos);
     if (l.count() == 0) return;
-    QCanvasItem* i = l.first();
+    Q3CanvasItem* i = l.first();
     if (i->rtti() == GRAPHTREE_LABEL) {
         GraphTreeLabel*tl = (GraphTreeLabel*)i;
         QString nm = tl->nodename();
@@ -77,10 +81,11 @@ void GraphViewTipSolver::maybeTip( const QPoint & pos)
             tip(QRect(vPosTL, vPosBR), tipStr);
         }
     }
+#endif
 }
 
-ResGraphView::ResGraphView(QWidget * parent, const char * name, WFlags f)
- : QCanvasView(parent,name,f)
+ResGraphView::ResGraphView(QWidget * parent, const char * name, Qt::WFlags f)
+ : Q3CanvasView(parent,name,f)
 {
     m_Canvas = 0L;
     dotTmpFile = 0;
@@ -90,8 +95,8 @@ ResGraphView::ResGraphView(QWidget * parent, const char * name, WFlags f)
     m_Tip = new GraphViewTipSolver(this);
     m_CompleteView = new PannerView(this);
     
-    m_CompleteView->setVScrollBarMode(QScrollView::AlwaysOff);
-    m_CompleteView->setHScrollBarMode(QScrollView::AlwaysOff);
+    m_CompleteView->setVScrollBarMode(Q3ScrollView::AlwaysOff);
+    m_CompleteView->setHScrollBarMode(Q3ScrollView::AlwaysOff);
     m_CompleteView->raise();
     m_CompleteView->hide();
     connect(this, SIGNAL(contentsMoving(int,int)),
@@ -119,10 +124,10 @@ ResGraphView::~ResGraphView()
 void ResGraphView::showText(const QString&s)
 {
     clear();
-    m_Canvas = new QCanvas(QApplication::desktop()->width(),
+    m_Canvas = new Q3Canvas(QApplication::desktop()->width(),
                         QApplication::desktop()->height());
 
-    QCanvasText* t = new QCanvasText(s, m_Canvas);
+    Q3CanvasText* t = new Q3CanvasText(s, m_Canvas);
     t->move(5, 5);
     t->show();
     center(0,0);
@@ -185,7 +190,7 @@ void ResGraphView::dotExit()
     double scale = 1.0, scaleX = 1.0, scaleY = 1.0;
     double dotWidth, dotHeight;
     QTextStream* dotStream;
-    dotStream = new QTextStream(dotOutput, IO_ReadOnly);
+    dotStream = new QTextStream(&dotOutput);
     QString line,cmd;
     int lineno=0;
     clear();
@@ -196,7 +201,7 @@ void ResGraphView::dotExit()
         if (line.isNull()) break;
         lineno++;
         if (line.isEmpty()) continue;
-        QTextStream lineStream(line, IO_ReadOnly);
+        QTextStream lineStream(&line);
         lineStream >> cmd;
         if (cmd == "stop") {break; }
 
@@ -212,7 +217,7 @@ void ResGraphView::dotExit()
             _yMargin = 50;
             if (h < QApplication::desktop()->height())
                 _yMargin += (QApplication::desktop()->height()-h)/2;
-            m_Canvas = new QCanvas(int(w+2*_xMargin), int(h+2*_yMargin));
+            m_Canvas = new Q3Canvas(int(w+2*_xMargin), int(h+2*_yMargin));
             continue;
         }
         if ((cmd != "node") && (cmd != "edge")) {
@@ -249,7 +254,7 @@ void ResGraphView::dotExit()
             QString node1Name, node2Name, label;
             QString _x,_y;
             double x, y;
-            QPointArray pa;
+            Q3PointArray pa;
             int points, i;
             lineStream >> node1Name >> node2Name;
             lineStream >> points;
@@ -321,7 +326,7 @@ void ResGraphView::dotExit()
             if (!arrowDir.isNull()) {
                 arrowDir *= 10.0/sqrt(double(arrowDir.x()*arrowDir.x() +
                     arrowDir.y()*arrowDir.y()));
-                QPointArray a(3);
+                Q3PointArray a(3);
                 a.setPoint(0, pa.point(indexHead) + arrowDir);
                 a.setPoint(1, pa.point(indexHead) + QPoint(arrowDir.y()/2,
                     -arrowDir.x()/2));
@@ -390,9 +395,12 @@ const QString&ResGraphView::getLabelstring(const QString&nodeName)
         return m_LabelMap[""];
     }
 
-    m_LabelMap[nodeName]=it1.data().item->name() + "-"
-	+ it1.data().item->edition().asString()+"."
-	+ it1.data().item->arch().asString();
+    m_LabelMap[nodeName]=it1.data().item->name().c_str();
+    m_LabelMap[nodeName]+= "-";
+    m_LabelMap[nodeName]+= it1.data().item->edition().asString().c_str();
+    m_LabelMap[nodeName]+= ".";
+    m_LabelMap[nodeName]+= it1.data().item->arch().asString().c_str();
+
     return m_LabelMap[nodeName];
 }
 
@@ -469,7 +477,7 @@ void ResGraphView::dumpRevtree()
         }
     }
     stream << "}\n"<<flush;
-    renderProcess = new QProcess();
+    renderProcess = new Q3Process();
     renderProcess->addArgument( "dot" );
     renderProcess->addArgument( filename );
     renderProcess->addArgument( "-Tplain");
@@ -499,10 +507,10 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
     if (it==m_Tree.end()) {
         return res;
     }
-    QStringList sp = QStringList::split("\n",it.data().item->description());
+    QStringList sp = QStringList::split("\n",(QString)(it.data().item->description().c_str()));
     QString sm;
     if (sp.count()==0) {
-        sm = it.data().item->description();
+        sm = it.data().item->description().c_str();
     } else {
         if (!full) {
             sm = sp[0]+"...";
@@ -523,17 +531,23 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
     res = QString("<html><body>");
 
     if (!full) {
-        res+=QString("<b>%1</b>").arg(it.data().item->name());
+	QString edition = it.data().item->edition().asString().c_str();
+	edition += ".";
+	edition += it.data().item->arch().asString().c_str();
+        res+=QString("<b>%1</b>").arg(it.data().item->name().c_str());
         res += i18n("<br>Kind: %1<br>Version: %2<br>Source: %3</html>")
-            .arg(it.data().item->kind().asString())
-            .arg(it.data().item->edition().asString()+"."+it.data().item->arch().asString())
-            .arg(it.data().item->repository().info().alias());
+            .arg(it.data().item->kind().asString().c_str())
+            .arg(edition)
+            .arg(it.data().item->repository().info().alias().c_str());
     } else {
         res+="<table><tr><th colspan=\"2\"></th></tr>";
-        res+=rstart + i18n("<b>Name</b>%1%2%3").arg(csep).arg(it.data().item->name()).arg(rend);	
-        res+=rstart + i18n("<b>Kind</b>%1%2%3").arg(csep).arg(it.data().item->kind().asString()).arg(rend);
-        res+=rstart+i18n("<b>Version</b>%1%2%3").arg(csep).arg(it.data().item->edition().asString()+"."+it.data().item->arch().asString()).arg(rend);
-        res+=rstart+i18n("<b>Source</b>%1%2%3").arg(csep).arg(it.data().item->repository().info().alias()).arg(rend);
+        res+=rstart + i18n("<b>Name</b>%1%2%3").arg(csep).arg(it.data().item->name().c_str()).arg(rend);	
+        res+=rstart + i18n("<b>Kind</b>%1%2%3").arg(csep).arg(it.data().item->kind().asString().c_str()).arg(rend);
+	QString edition = it.data().item->edition().asString().c_str();
+	edition += ".";
+	edition += it.data().item->arch().asString().c_str();
+        res+=rstart+i18n("<b>Version</b>%1%2%3").arg(csep).arg(edition).arg(rend);
+        res+=rstart+i18n("<b>Source</b>%1%2%3").arg(csep).arg(it.data().item->repository().info().alias().c_str()).arg(rend);
         res+=rstart+i18n("<b>Description</b>%1%2%3").arg(csep).arg(sm).arg(rend);
         res+="</table></body></html>";
     }
@@ -697,7 +711,7 @@ void ResGraphView::zoomRectMoveFinished()
 
 void ResGraphView::resizeEvent(QResizeEvent*e)
 {
-    QCanvasView::resizeEvent(e);
+    Q3CanvasView::resizeEvent(e);
     if (m_Canvas) updateSizes(e->size());
 }
 
@@ -742,9 +756,9 @@ void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 {
     setFocus();
     if (e->button() == Qt::LeftButton) {
-        QCanvasItemList l = canvas()->collisions(e->pos());
+        Q3CanvasItemList l = canvas()->collisions(e->pos());
         if (l.count()>0) {
-            QCanvasItem* i = l.first();
+            Q3CanvasItem* i = l.first();
             if (i->rtti()==GRAPHTREE_LABEL) {
 		trevTree::ConstIterator it;
 		it = m_Tree.find(((GraphTreeLabel*)i)->nodename());
@@ -790,9 +804,9 @@ void ResGraphView::contentsMouseReleaseEvent ( QMouseEvent * e)
     _isMoving = false;
     updateZoomerPos();
     if (e->button() == Qt::LeftButton) {
-        QCanvasItemList l = canvas()->collisions(e->pos());
+        Q3CanvasItemList l = canvas()->collisions(e->pos());
         if (l.count()>0) {
-            QCanvasItem* i = l.first();
+            Q3CanvasItem* i = l.first();
             if (i->rtti()==GRAPHTREE_LABEL) {
                 makeSelected( (GraphTreeLabel*)i);
 		
@@ -830,11 +844,11 @@ void ResGraphView::setNewDirection(int dir)
 void ResGraphView::contentsContextMenuEvent(QContextMenuEvent* e)
 {
     if (!m_Canvas) return;
-    QCanvasItemList l = canvas()->collisions(e->pos());
-    QCanvasItem* i = (l.count() == 0) ? 0 : l.first();
+    Q3CanvasItemList l = canvas()->collisions(e->pos());
+    Q3CanvasItem* i = (l.count() == 0) ? 0 : l.first();
     trevTree::ConstIterator it;
 
-    QPopupMenu popup;
+    Q3PopupMenu popup;
     if (i && i->rtti()==GRAPHTREE_LABEL) {
         if (m_Selected == i) {
             popup.insertItem(i18n("Unselect item"),401);

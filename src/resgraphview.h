@@ -21,9 +21,10 @@
 #define RESGRAPHVIEW_H
 
 
-#include <qcanvas.h>
+#include <q3canvas.h>
 #include <qfile.h>
-#include <qprocess.h>
+#include <q3process.h>
+#include <qmap.h>
 #include <zypp/PoolItem.h>
 #include <zypp/Resolver.h>
 #include <zypp/Resolvable.h>
@@ -44,7 +45,7 @@ class CContextListener;
 /**
 	@author Rajko Albrecht <ral@alwins-world.de>
 */
-class ResGraphView : public QCanvasView
+class ResGraphView : public Q3CanvasView
 {
     Q_OBJECT
 public:
@@ -54,7 +55,7 @@ public:
     friend class SolverTree;
     friend class ResTreeWidget;
 
-    ResGraphView(QWidget * parent = 0, const char * name = 0, WFlags f = 0);
+    ResGraphView(QWidget * parent = 0, const char * name = 0, Qt::WFlags f = 0);
     virtual ~ResGraphView();
 
     void showText(const QString&s);
@@ -71,7 +72,7 @@ public:
         }
         targetData(){key="";}
     };
-    typedef QValueList<targetData> tlist;
+    typedef Q3ValueList<targetData> tlist;
 
     struct keyData {
 	zypp::PoolItem item;
@@ -100,12 +101,12 @@ protected slots:
     virtual void dotExit();
 
 protected:
-    QCanvas*m_Canvas;
+    Q3Canvas*m_Canvas;
     GraphMark*m_Marker;
     GraphTreeLabel*m_Selected;
     QFile*dotTmpFile;
     QString dotOutput;
-    QProcess*renderProcess;
+    Q3Process*renderProcess;
     trevTree m_Tree;
     const QString&getLabelstring(const QString&nodeName);
     QColor getBgColor(const QString&nodeName)const;

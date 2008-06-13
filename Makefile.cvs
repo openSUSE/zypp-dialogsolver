@@ -1,31 +1,20 @@
-## ##################################################
-## Makefile.cvs
-## ##################################################
+#
+# Makefile.cvs
+#
 
-.PHONY: default init configure reconf
-
-# Try to detect if this is a lib or lib64 system
-LIB = $(shell gcc -v 2>&1 				\
-	| awk ' BEGIN{ lib="lib" }			\
-		match( $$0, "--libdir=/usr/([^ ]*)" ) {	\
-			lib=substr($$0,RSTART,RLENGTH);	\
-			sub("--libdir=/usr/","",lib)	\
-		}					\
-		END{print lib} ' )
+LIB = $(shell get-lib)
 
 PREFIX = /usr
-CONFIGURE_OPTS=
-default: configure
 
-configure: init
-	./configure --prefix=$(PREFIX) --libdir=$(PREFIX)/$(LIB) \
-		--disable-static \
-		$(CONFIGURE_OPTS)
+configure: 
+	mkdir build ;\
+	cd build ;\
+	cmake -DCMAKE_INSTALL_PREFIX=$(PREFIX) -DLIB=$(LIB) ..
 
-init:
-	rm -rf autom4te.cache
-	autoreconf --force --install --symlink --verbose
+install: configure
+	cd build; \
+	make && make install
 
-reconf: init
-	./config.status --recheck
-	./config.status
+reconf: 
+	cd build ;\
+	cmake rebuild_cache

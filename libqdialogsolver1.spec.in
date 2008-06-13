@@ -19,7 +19,7 @@ Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`) graphviz
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  gcc-c++ qt3-devel
+BuildRequires:  gcc-c++ libqt4-devel
 
 
 # API Changes in zypp 2.1
@@ -49,18 +49,21 @@ Authors:
 %setup -q -n libqdialogsolver1-%{version}
 
 %build
-sed -i '/devel\//d' configure.ac
-cp /usr/share/gettext/config.rpath .
-autoreconf --force --install --symlink --verbose
-
-%{?suse_update_config:%{suse_update_config -f}}
-CXXFLAGS="$RPM_OPT_FLAGS" \
-./configure --prefix=%{prefix} --libdir=%{_libdir} --mandir=%{_mandir} --disable-static
-make %{?jobs:-j %jobs}
-#make check
+mkdir build
+cd build
+export CFLAGS="$RPM_OPT_FLAGS"
+export CXXFLAGS="$CFLAGS"
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+      -DLIB=%{_lib} \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_SKIP_RPATH=1 \
+      ..
+make %{?jobs:-j %jobs} VERBOSE=1
 
 %install
+cd build
 make install DESTDIR=$RPM_BUILD_ROOT
+cd ..
 
 %post -p /sbin/ldconfig
 

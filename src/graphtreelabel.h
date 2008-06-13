@@ -21,15 +21,15 @@
 #define GRAPHTREELABEL_H
 
 #include "drawparams.h"
-#include <qcanvas.h>
+#include <q3canvas.h>
 
 /**
 	@author Rajko Albrecht <ral@alwins-world.de>
 */
-class GraphTreeLabel : public QCanvasRectangle,StoredDrawParams
+class GraphTreeLabel : public Q3CanvasRectangle,StoredDrawParams
 {
 public:
-    GraphTreeLabel(const QString&,const QString&,const QRect&r,QCanvas*c);
+    GraphTreeLabel(const QString&,const QString&,const QRect&r,Q3Canvas*c);
     virtual ~GraphTreeLabel();
 
     virtual int rtti()const;
@@ -51,10 +51,10 @@ protected:
 
 class GraphEdge;
 
-class GraphEdgeArrow:public QCanvasPolygon
+class GraphEdgeArrow:public Q3CanvasPolygon
 {
 public:
-    GraphEdgeArrow(GraphEdge*,QCanvas*);
+    GraphEdgeArrow(GraphEdge*,Q3Canvas*);
     GraphEdge*edge();
     virtual void drawShape(QPainter&);
     virtual int rtti()const;
@@ -64,21 +64,21 @@ private:
 };
 
 /* line */
-class GraphEdge:public QCanvasSpline
+class GraphEdge:public Q3CanvasSpline
 {
 public:
-    GraphEdge(QCanvas*);
+    GraphEdge(Q3Canvas*);
     virtual ~GraphEdge();
 
     virtual void drawShape(QPainter&);
-    QPointArray areaPoints() const;
+    Q3PointArray areaPoints() const;
     virtual int rtti()const;
 };
 
-class GraphMark:public QCanvasRectangle
+class GraphMark:public Q3CanvasRectangle
 {
 public:
-    GraphMark(GraphTreeLabel*,QCanvas*);
+    GraphMark(GraphTreeLabel*,Q3Canvas*);
     virtual ~GraphMark();
     virtual int rtti()const;
     virtual bool hit(const QPoint&)const;

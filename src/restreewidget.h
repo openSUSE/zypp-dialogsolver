@@ -25,7 +25,8 @@
 #include <qpixmap.h>
 #include <qwidget.h>
 #include <qtabwidget.h>
-#include <qlistview.h>
+#include <q3listview.h>
+#include <q3textbrowser.h>
 #include "zypp/Resolver.h"
 #include <zypp/PoolItem.h>
 #include <zypp/Resolvable.h>
@@ -38,8 +39,8 @@ class QSpacerItem;
 class ResGraphView;
 class QSplitter;
 class QTextBrowser;
-class QVBox;
-class QHBox;
+class Q3VBox;
+class Q3HBox;
 class QComboBox;
 class QLabel;
 
@@ -53,7 +54,7 @@ class ResTreeWidget : public QWidget
     Q_OBJECT
 
 public:
-    ResTreeWidget(QWidget* parent = 0, zypp::solver::detail::Resolver_Ptr r = NULL, const char* name = 0, WFlags fl = 0 );
+    ResTreeWidget(QWidget* parent = 0, zypp::solver::detail::Resolver_Ptr r = NULL, const char* name = 0, Qt::WFlags fl = 0 );
     ~ResTreeWidget();
 
     QSplitter* m_Splitter;
@@ -65,20 +66,20 @@ public:
 
 protected:
     QVBoxLayout* ResTreeWidgetLayout;
-    QVBox *descriptionBox;
-    QHBox *searchBox;
+    Q3VBox *descriptionBox;
+    Q3HBox *searchBox;
     QLabel *searchLabel;
     QTabWidget *tabWidget;
-    QListView *installListView;
-    QListView *installedListView;    
-    QTextBrowser* m_Detailstext;
+    Q3ListView *installListView;
+    Q3ListView *installedListView;    
+    Q3TextBrowser* m_Detailstext;
     QComboBox *resolvableList;
     void selectItem(const QString & itemString);        
 
 
 protected slots:
     virtual void setDetailText(const QString&, const zypp::PoolItem);
-    void itemSelected( QListViewItem* item);    
+    void itemSelected( Q3ListViewItem* item);    
     void slotComboActivated( const QString &s );
     
 private:

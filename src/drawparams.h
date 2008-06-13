@@ -31,11 +31,12 @@
 #ifndef DRAWPARAMS_H
 #define DRAWPARAMS_H
 
+#include <qmenubar.h>
 #include <qstring.h>
 #include <qwidget.h>
 #include <qpixmap.h>
-#include <qptrlist.h>
-#include <qvaluevector.h>
+#include <q3ptrlist.h>
+#include <q3valuevector.h>
 #include <qcolor.h>
 #include <qapplication.h>
 #include <qstringlist.h>
@@ -148,7 +149,7 @@ private:
     int maxLines;
   };
 
-  QValueVector<Field> _field;
+  Q3ValueVector<Field> _field;
 };
 
 

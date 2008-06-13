@@ -19,9 +19,10 @@
  ***************************************************************************/
 #include "pannerview.h"
 #include <qpainter.h>
+#include <qevent.h>
 
 PannerView::PannerView(QWidget* parent, const char* name)
-    : QCanvasView(parent, name,WNoAutoErase | WStaticContents )
+    : Q3CanvasView(parent, name,Qt::WNoAutoErase | Qt::WStaticContents )
 {
     m_Moving = false;
     viewport()->setBackgroundMode(Qt::NoBackground);
@@ -35,12 +36,12 @@ PannerView::~PannerView()
 void PannerView::drawContents(QPainter* p,  int clipx, int clipy, int clipw, int cliph)
 {
     p->save();
-    QCanvasView::drawContents(p,clipx,clipy,clipw,cliph);
+    Q3CanvasView::drawContents(p,clipx,clipy,clipw,cliph);
     p->restore();
     if (m_ZoomRect.isValid()) {
-        p->setPen(red.dark());
+        p->setPen(Qt::darkRed);
         p->drawRect(m_ZoomRect);
-        p->setPen( red);
+        p->setPen( Qt::red);
         p->drawRect(QRect(m_ZoomRect.x()+1, m_ZoomRect.y()+1,
             m_ZoomRect.width()-2, m_ZoomRect.height()-2));
     }
