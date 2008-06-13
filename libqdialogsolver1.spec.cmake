@@ -10,7 +10,7 @@
 
 # norootforbuild
 
-Name:           libqdialogsolver1
+Name:           @PACKAGE@
 Version:        @VERSION@
 Release:        0
 License:        GPL
