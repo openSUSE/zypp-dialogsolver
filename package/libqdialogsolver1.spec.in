@@ -79,6 +79,5 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(-,root,root)
 %dir %{_libdir}/libqdialogsolver.so
-%dir %{_libdir}/libqdialogsolver.la
-%dir %{prefix}/include/zypp
-%{prefix}/include/zypp/*
+%dir /usr/include/zypp
+/usr/include/zypp/*

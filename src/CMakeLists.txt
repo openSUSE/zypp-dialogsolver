@@ -35,7 +35,7 @@ SET( libqdialogsolver_HEADERS
      solvertree.h
 )
 
-INSTALL(  FILES ${libqdialogsolver_HEADERS} DESTINATION "${CMAKE_INSTALL_PREFIX}/zypp" )
+INSTALL(  FILES ${libqdialogsolver_HEADERS} DESTINATION "${CMAKE_INSTALL_PREFIX}/include/zypp" )
 
 QT4_AUTOMOC(${libqdialogsolver_SRCS})
 
