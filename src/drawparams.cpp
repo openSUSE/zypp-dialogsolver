@@ -652,9 +652,9 @@ bool RectDrawing::drawField(QPainter* p, int f, DrawParams* dp)
 //    if (0) Debug(90100) << "  Drawing '" << name << "' at "
 //		     << x+pixW << "/" << y << endl;
 
-    p->drawText( x+pixW, y,
+    p->drawText( x+pixW, y+10,
 		 width - pixW, h,
-		 Qt::AlignLeft, name);
+		 Qt::AlignVCenter, name);
     y = isBottom ? (y-h) : (y+h);
     lines--;
 
