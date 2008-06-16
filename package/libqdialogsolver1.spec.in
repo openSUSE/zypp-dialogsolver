@@ -19,7 +19,7 @@ Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`) graphviz
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  gcc-c++ libqt4-devel
+BuildRequires:  gcc-c++ libqt4-devel gettext-devel
 
 
 # API Changes in zypp 2.1
@@ -59,6 +59,7 @@ cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} \
       -DCMAKE_SKIP_RPATH=1 \
       ..
 make %{?jobs:-j %jobs} VERBOSE=1
+make -C po %{?jobs:-j %jobs} translations
 
 %install
 cd build

@@ -11,6 +11,7 @@ ADD_DEFINITIONS(
 		-DQT3_SUPPORT
 		-DQT_LOCALEDIR=\\\"${CMAKE_INSTALL_PREFIX}/share/qt4/translations\\\"
 		-DQTLIBDIR=\\\"${LIB_INSTALL_DIR}\\\"
+		-DLOCALEDIR=\\\"${CMAKE_INSTALL_PREFIX}/share/locale\\\" -DTEXTDOMAIN=\\\"dialogsolver\\\"
 		)
 
 SET( libqdialogsolver_SRCS
@@ -22,17 +23,11 @@ SET( libqdialogsolver_SRCS
      resgraphview.cpp
      restreewidget.cpp
      solvertree.cpp
+     getText.cc
      )
 
 SET( libqdialogsolver_HEADERS
-     drawparams.h
-     graphtree_defines.h
-     graphtreelabel.h
-     pannerview.h
      QZyppSolverDialog.h
-     resgraphview.h
-     restreewidget.h
-     solvertree.h
 )
 
 INSTALL(  FILES ${libqdialogsolver_HEADERS} DESTINATION "${CMAKE_INSTALL_PREFIX}/include/zypp" )
