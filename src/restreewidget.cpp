@@ -33,8 +33,7 @@
 #include <qnamespace.h>
 #include "resgraphview.h"
 #include "zypp/Resolver.h"
-
-#define i18n(MSG) QString(MSG)
+#include "getText.h"
 
 /*
  *  Constructs a ResTreeWidget as a child of 'parent', with the

@@ -7,8 +7,7 @@
 
 #include "QZyppSolverDialog.h"
 #include "solvertree.h"
-
-#define i18n(MSG) QString(MSG)
+#include "getText.h"
 
 QZyppSolverDialog::QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r)
       : QDialog(0,"Solvertree",true)

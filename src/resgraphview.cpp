@@ -43,10 +43,10 @@
 #include "zypp/ZYppFactory.h"
 #include "zypp/ResFilters.h"
 #include "zypp/base/Algorithm.h"
+#include "getText.h"
 
 #define LABEL_WIDTH 160
 #define LABEL_HEIGHT 90
-#define i18n(MSG) QString(MSG)
 
 using namespace zypp;
 
