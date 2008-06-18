@@ -689,8 +689,6 @@ bool ResGraphView::event(QEvent *event)
 		 QString nm = tl->nodename();
 		 QString tipStr = toolTip(nm);
 		 if (tipStr.length()>0) {
-//		     QPoint vPosTL = cgv->contentsToViewport(i->boundingRect().topLeft());
-//		     QPoint vPosBR = cgv->contentsToViewport(i->boundingRect().bottomRight());
 		     QToolTip::showText(helpEvent->globalPos(), tipStr);		     
 		 } else {
 		     QToolTip::hideText();		     
