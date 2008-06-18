@@ -52,38 +52,6 @@ using namespace zypp;
 
 static int globalDirection = 0;
 
-class GraphViewTipSolver
-{
-public:
-  GraphViewTipSolver( QWidget* p ){}
-  virtual ~GraphViewTipSolver(){}
-
-protected:
-    void maybeTip( const QPoint & );
-};
-
-void GraphViewTipSolver::maybeTip( const QPoint & pos)
-{
-#if 0
-    if (!parentWidget()->inherits( "ResGraphView" )) return;
-    ResGraphView* cgv = (ResGraphView*)parentWidget();
-    QPoint cPos = cgv->viewportToContents(pos);
-    Q3CanvasItemList l = cgv->canvas()->collisions(cPos);
-    if (l.count() == 0) return;
-    Q3CanvasItem* i = l.first();
-    if (i->rtti() == GRAPHTREE_LABEL) {
-        GraphTreeLabel*tl = (GraphTreeLabel*)i;
-        QString nm = tl->nodename();
-        QString tipStr = cgv->toolTip(nm);
-        if (tipStr.length()>0) {
-            QPoint vPosTL = cgv->contentsToViewport(i->boundingRect().topLeft());
-            QPoint vPosBR = cgv->contentsToViewport(i->boundingRect().bottomRight());
-            tip(QRect(vPosTL, vPosBR), tipStr);
-        }
-    }
-#endif
-}
-
 ResGraphView::ResGraphView(QWidget * parent, const char * name, Qt::WFlags f)
  : Q3CanvasView(parent,name,f)
 {
@@ -92,7 +60,6 @@ ResGraphView::ResGraphView(QWidget * parent, const char * name, Qt::WFlags f)
     m_Selected = 0;
     renderProcess = 0;
     m_Marker = 0;
-    m_Tip = new GraphViewTipSolver(this);
     m_CompleteView = new PannerView(this);
     
     m_CompleteView->setVScrollBarMode(Q3ScrollView::AlwaysOff);
@@ -117,7 +84,6 @@ ResGraphView::~ResGraphView()
     delete m_Canvas;
     delete dotTmpFile;
     delete m_CompleteView;
-    delete m_Tip;
     delete renderProcess;
 }
 
@@ -707,6 +673,32 @@ void ResGraphView::zoomRectMoveFinished()
     if (_zoomPosition == Auto)
 #endif
     updateZoomerPos();
+}
+
+
+bool ResGraphView::event(QEvent *event)
+{
+     if (event->type() == QEvent::ToolTip) {
+         QHelpEvent *helpEvent = static_cast<QHelpEvent *>(event);
+	 QPoint cPos = viewportToContents(helpEvent->pos());
+	 Q3CanvasItemList l = canvas()->collisions(cPos);
+	 if (l.count() > 0) {
+	     Q3CanvasItem* i = l.first();
+	     if (i->rtti() == GRAPHTREE_LABEL) {
+		 GraphTreeLabel*tl = (GraphTreeLabel*)i;
+		 QString nm = tl->nodename();
+		 QString tipStr = toolTip(nm);
+		 if (tipStr.length()>0) {
+//		     QPoint vPosTL = cgv->contentsToViewport(i->boundingRect().topLeft());
+//		     QPoint vPosBR = cgv->contentsToViewport(i->boundingRect().bottomRight());
+		     QToolTip::showText(helpEvent->globalPos(), tipStr);		     
+		 } else {
+		     QToolTip::hideText();		     
+		 }
+	     }
+	 }
+     }
+     return QWidget::event(event);
 }
 
 void ResGraphView::resizeEvent(QResizeEvent*e)

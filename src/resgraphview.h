@@ -117,12 +117,12 @@ protected:
     QMap<QString,QString> m_LabelMap;
 
     int _xMargin,_yMargin;
-    GraphViewTipSolver*m_Tip;
     PannerView*m_CompleteView;
     double _cvZoomW;
     double _cvZoomH;    
     ZoomPosition m_LastAutoPosition;
 
+    virtual bool event(QEvent *event);    
     virtual void resizeEvent(QResizeEvent*);
     virtual void contentsMousePressEvent ( QMouseEvent * e );
     virtual void contentsMouseReleaseEvent ( QMouseEvent * e );
