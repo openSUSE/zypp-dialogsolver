@@ -24,9 +24,16 @@ protected:
 
 public:
     /** Constructor
+     * Show the result of the given solver	
      * \param Resolver pointer of a valid solver run
     */    
      QZyppSolverDialog(zypp::solver::detail::Resolver_Ptr r = NULL);
+
+    /** Constructor
+     * Make a complete new solverrun by installing item
+     * \param item which will be installed
+    */    
+     QZyppSolverDialog(const zypp::PoolItem item);
     
     /** ctor
     */    

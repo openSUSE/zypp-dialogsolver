@@ -47,6 +47,12 @@ void PannerView::drawContents(QPainter* p,  int clipx, int clipy, int clipw, int
     }
 }
 
+void PannerView::drawContents(QPainter* p)
+{
+    drawContents (p,0,0,0,0);
+}
+
+
 void PannerView::setZoomRect(const QRect& theValue)
 {
     QRect oldRect = m_ZoomRect;

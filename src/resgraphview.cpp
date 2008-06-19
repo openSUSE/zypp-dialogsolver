@@ -436,7 +436,7 @@ void ResGraphView::dumpRevtree()
             << "shape=box, "
             << "label=\""<<getLabelstring(it1.key())<<"\","
             << "];\n";
-        for (unsigned j=0;j<it1.data().targets.count();++j) {
+        for (int j=0;j<it1.data().targets.count();++j) {
             stream<<"  "<<it1.key().latin1()<< " "
                 << "->"<<" "<<it1.data().targets[j].key
                 << " [fontsize=10,style=\"solid\""
@@ -457,7 +457,7 @@ void ResGraphView::dumpRevtree()
 
     if (!renderProcess->start(&envs)) {
         QString argu;
-        for (unsigned c=0;c<renderProcess->arguments().count();++c) {
+        for (int c=0;c<renderProcess->arguments().count();++c) {
             argu+=QString(" %1").arg(renderProcess->arguments()[c]);
         }
         QString error = i18n("Could not start process \"%1\".").arg(argu);
@@ -483,7 +483,7 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
         if (!full) {
             sm = sp[0]+"...";
         } else {
-            for (unsigned j = 0; j<sp.count(); ++j) {
+            for (int j = 0; j<sp.count(); ++j) {
                 if (j>0) sm+="<br>";
                 sm+=sp[j];
             }
@@ -756,6 +756,7 @@ void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 		it = m_Tree.find(((GraphTreeLabel*)i)->nodename());
 		if (it!=m_Tree.end()) {
 		    zypp::ResPool pool( zypp::getZYpp()->pool() );
+		    pool.proxy().saveState(); // Save old pool
 		    const QCursor oldCursor = cursor ();
 		    setCursor (Qt::WaitCursor); 		    
 		    // resetting all selections
@@ -778,6 +779,7 @@ void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 		    dialog->raise();
 		    dialog->activateWindow();		    
 		    dialog->selectItem(it.data().item);
+		    pool.proxy().restoreState(); // Restore old state
 		}
             }
         }

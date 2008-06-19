@@ -144,6 +144,7 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 							edition,
 							QString(iter->cap.asString().c_str()),
 							QString(iter->capKind.asString().c_str()));
+	    element = NULL;
 	}
 	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installList.begin();
 	     iter != installList.end(); ++iter) {
@@ -154,7 +155,8 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 							QString(iter->item->name().c_str()),
 							edition,  
 							QString(iter->cap.asString().c_str()),
-							QString(iter->capKind.asString().c_str()));	    
+							QString(iter->capKind.asString().c_str()));
+	    element = NULL;	    
 	}
     }
     
