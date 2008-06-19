@@ -76,6 +76,7 @@ ResGraphView::ResGraphView(QWidget * parent, const char * name, Qt::WFlags f)
     _isMoving = false;
     _noUpdateZoomerPos = false;
     m_LabelMap[""]="";
+    _lastSelectedItem = "";
 }
 
 ResGraphView::~ResGraphView()
@@ -317,6 +318,7 @@ void ResGraphView::dotExit()
     }
     endInsert();
     renderProcess=0;
+    selectItem(_lastSelectedItem); // Show the selected item (Could be set via API meanwhile)
 }
 
 bool ResGraphView::isStart(const QString&nodeName)const
@@ -772,7 +774,10 @@ void ResGraphView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 		    dialog->setCaption(getLabelstring(((GraphTreeLabel*)i)->nodename()));
 		    dialog->setMinimumSize ( 600, 600 );
 		    setCursor (oldCursor);
-		    dialog->exec();		    
+		    dialog->show();
+		    dialog->raise();
+		    dialog->activateWindow();		    
+		    dialog->selectItem(it.data().item);
 		}
             }
         }
@@ -917,12 +922,6 @@ void ResGraphView::contentsContextMenuEvent(QContextMenuEvent* e)
     }
 }
 
-
-void ResGraphView::setBasePath(const QString&_path)
-{
-    _basePath = _path;
-}
-
 void ResGraphView::slotClientException(const QString&what)
 {
     QMessageBox::critical(0,"Critical",what, QMessageBox::Ok,
@@ -930,6 +929,7 @@ void ResGraphView::slotClientException(const QString&what)
 }
 
 void ResGraphView::selectItem(const QString & itemString) {
+    _lastSelectedItem = itemString;
     QMap<QString,GraphTreeLabel*>::Iterator it;
     for ( it = m_NodeList.begin(); it != m_NodeList.end(); ++it ) {
 	GraphTreeLabel*tlab = it.data();

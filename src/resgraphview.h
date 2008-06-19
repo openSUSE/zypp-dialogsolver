@@ -135,7 +135,7 @@ protected:
 
     bool _noUpdateZoomerPos;
 
-    QString _basePath;
+    QString _lastSelectedItem;
 
 private:
     void updateSizes(QSize s = QSize(0,0));
