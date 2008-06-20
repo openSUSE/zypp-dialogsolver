@@ -25,6 +25,7 @@
 #include <qpixmap.h>
 #include <qwidget.h>
 #include <qtabwidget.h>
+#include <QCheckBox>
 #include <q3listview.h>
 #include <q3textbrowser.h>
 #include "zypp/Resolver.h"
@@ -68,6 +69,8 @@ protected:
     QVBoxLayout* ResTreeWidgetLayout;
     Q3VBox *descriptionBox;
     Q3HBox *searchBox;
+    Q3HBox *checkBox;
+    QCheckBox *showInstalled, *showRecommend;
     QLabel *searchLabel;
     QTabWidget *tabWidget;
     Q3ListView *installListView;
@@ -81,6 +84,7 @@ protected slots:
     virtual void setDetailText(const QString&, const zypp::PoolItem);
     void itemSelected( Q3ListViewItem* item);    
     void slotComboActivated( const QString &s );
+    void showInstalledChanged(int state);
     
 private:
     QPixmap image0;

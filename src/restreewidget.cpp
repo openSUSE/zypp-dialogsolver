@@ -59,6 +59,11 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     tabWidget = new QTabWidget( descriptionBox, "tabWidget");
     tabWidget->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)7, 0, 0, tabWidget->sizePolicy().hasHeightForWidth() ) );
 
+    checkBox = new Q3HBox( descriptionBox, "checkBox");
+    checkBox->setSpacing (5);
+    showInstalled = new QCheckBox(i18n("show installed packages"), checkBox);
+    showRecommend = new QCheckBox(i18n("show recommended packages"), checkBox);;
+    
     searchBox = new Q3HBox( descriptionBox, "searchBox");
     searchBox->setSpacing (5);
     searchLabel = new QLabel (i18n("Search: "), searchBox);
@@ -88,7 +93,8 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
 
     connect( installedListView, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( itemSelected( Q3ListViewItem* ) ) );
     connect( installListView, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( itemSelected( Q3ListViewItem* ) ) );
-    connect( resolvableList, SIGNAL( activated( const QString & ) ), this, SLOT( slotComboActivated( const QString & ) ) );    
+    connect( resolvableList, SIGNAL( activated( const QString & ) ), this, SLOT( slotComboActivated( const QString & ) ) );
+    connect( showInstalled, SIGNAL( stateChanged ( int state )  ), this, SLOT( showInstalledChanged ( int state ) ) );        
     
     ResTreeWidgetLayout->addWidget(m_Splitter);
     
@@ -195,6 +201,10 @@ void ResTreeWidget::itemSelected( Q3ListViewItem* item) {
     item->setSelected( TRUE );
     item->repaint();
     selectItem (item->text( 0 )+"-"+item->text( 1 ) );
+}
+
+void ResTreeWidget::showInstalledChanged(int state) {
+    
 }
 
 #include "restreewidget.moc"
