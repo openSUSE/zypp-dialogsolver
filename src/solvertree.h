@@ -22,6 +22,7 @@
 
 #include "zypp/Resolver.h"
 #include "resgraphview.h"
+#include "restreewidget.h"
 
 class StreeData;
 class QWidget;
@@ -47,7 +48,7 @@ protected:
     zypp::solver::detail::Resolver_Ptr resolver;
     StreeData*m_Data;
     PoolItemSet alreadyHitItems;
-    void buildTree ( StreeData *data, ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
+    void buildTree ( ResTreeWidget *data, ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
 
 };
 

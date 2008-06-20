@@ -97,7 +97,7 @@ SolverTree::SolverTree( QWidget*treeParent,
 		    m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item = *it;
 
 		    // we have found a root; collect all trees
-		    buildTree ( m_Data, m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, *it, id);
+		    buildTree ( m_Data->m_TreeDisplay, m_Data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, *it, id);
 		}
 	    }	
 	}
@@ -123,7 +123,7 @@ bool SolverTree::isValid()const
 }
 
 
-void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
+void SolverTree::buildTree ( ResTreeWidget *data,  ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
     // generate the branches for items which will really be installed
     zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
     for (zypp::solver::detail::ItemCapKindList::const_iterator it = installList.begin();
@@ -133,14 +133,14 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	    QString idStr = QString( "%1" ).arg( id++ );
 
 	    childList.append(ResGraphView::targetData(idStr));		    
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
-	    data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].dueto = *it;
+	    data->m_RevGraphView->m_Tree[idStr].item=it->item;
+	    data->m_RevGraphView->m_Tree[idStr].dueto = *it;
 
 	    alreadyHitItems.insert (item);
 
 	    // we have found a root; collect all trees
 	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end())
-		buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
+		buildTree ( data, data->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
 	}
     }
 
@@ -151,8 +151,8 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	QString idStr = QString( "%1" ).arg( id++ );
 
 	childList.append(ResGraphView::targetData(idStr));		    
-	data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
-	data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].dueto = *it;
+	data->m_RevGraphView->m_Tree[idStr].item=it->item;
+	data->m_RevGraphView->m_Tree[idStr].dueto = *it;
 
 	alreadyHitItems.insert (item);
     }
