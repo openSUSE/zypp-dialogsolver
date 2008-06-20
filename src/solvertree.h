@@ -21,8 +21,6 @@
 #define SOLVERTREE_H
 
 #include "zypp/Resolver.h"
-#include "resgraphview.h"
-#include "restreewidget.h"
 
 class StreeData;
 class QWidget;
@@ -30,8 +28,6 @@ class QWidget;
 /**
 	@author Rajko Albrecht <ral@alwins-world.de>
 */
-
-typedef std::set<zypp::PoolItem> PoolItemSet;
 
 class SolverTree{
 public:
@@ -47,8 +43,6 @@ protected:
     bool m_Valid;
     zypp::solver::detail::Resolver_Ptr resolver;
     StreeData*m_Data;
-    PoolItemSet alreadyHitItems;
-    void buildTree ( ResTreeWidget *data, ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
 
 };
 

@@ -31,6 +31,7 @@
 #include "zypp/Resolver.h"
 #include <zypp/PoolItem.h>
 #include <zypp/Resolvable.h>
+#include "resgraphview.h"
 
 
 class QVBoxLayout;
@@ -45,10 +46,7 @@ class Q3HBox;
 class QComboBox;
 class QLabel;
 
-namespace svn {
-    class LogEntry;
-    class Client;
-}
+typedef std::set<zypp::PoolItem> PoolItemSet;
 
 class ResTreeWidget : public QWidget
 {
@@ -64,6 +62,7 @@ public:
     void selectItem(const zypp::PoolItem item);    
 
     void dumpRevtree();
+    void buildTree();
 
 protected:
     QVBoxLayout* ResTreeWidgetLayout;
@@ -77,8 +76,11 @@ protected:
     Q3ListView *installedListView;    
     Q3TextBrowser* m_Detailstext;
     QComboBox *resolvableList;
-    void selectItem(const QString & itemString);        
-
+    PoolItemSet alreadyHitItems;
+    
+    void selectItem(const QString & itemString);
+    void buildTreeBranch (ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
+    
 
 protected slots:
     virtual void setDetailText(const QString&, const zypp::PoolItem);

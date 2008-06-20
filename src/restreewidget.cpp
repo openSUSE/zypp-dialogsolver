@@ -207,5 +207,81 @@ void ResTreeWidget::showInstalledChanged(int state) {
     
 }
 
+
+void ResTreeWidget::buildTree() {
+    if (resolver != NULL) {
+	alreadyHitItems.clear();
+	int id = 0;
+	for (zypp::ResPool::const_iterator it = resolver->pool().begin();
+	     it != resolver->pool().end();
+	     ++it)
+	{ // find all root items and generate 
+	    if (it->status().isToBeInstalled()) {
+		
+		zypp::ResObject::constPtr r = it->resolvable();		
+		bool rootfound = false;
+		zypp::solver::detail::ItemCapKindList isInstalledList = resolver->isInstalledBy (*it);		
+		if (isInstalledList.empty()) {
+		    rootfound = true;
+		} else {
+		    rootfound = true;
+		    for (zypp::solver::detail::ItemCapKindList::const_iterator isInstall = isInstalledList.begin();
+			 isInstall != isInstalledList.end(); isInstall++) {
+			if (isInstall->initialInstallation) {
+			    rootfound = false;
+			}
+		    }
+		}
+
+		if (rootfound) {
+		    QString idStr = QString( "%1" ).arg( id++ );		    
+		    m_RevGraphView->m_Tree[idStr].item = *it;
+
+		    // we have found a root; collect all trees
+		    buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, *it, id);
+		}
+	    }	
+	}
+    }
+    dumpRevtree();
+}  
+    
+void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
+    // generate the branches for items which will really be installed
+    zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
+    for (zypp::solver::detail::ItemCapKindList::const_iterator it = installList.begin();
+	 it != installList.end(); it++) {
+	if (it->initialInstallation) {
+	    // This item will REALLY triggered by the given root item (not only due required dependencies)
+	    QString idStr = QString( "%1" ).arg( id++ );
+
+	    childList.append(ResGraphView::targetData(idStr));		    
+	    m_RevGraphView->m_Tree[idStr].item=it->item;
+	    m_RevGraphView->m_Tree[idStr].dueto = *it;
+
+	    alreadyHitItems.insert (item);
+
+	    // we have found a root; collect all trees
+	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end())
+		buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
+	}
+    }
+
+    // generate the branches for items which are already installed
+    zypp::solver::detail::ItemCapKindList satisfiedList = resolver->satifiedByInstalled (item);
+    for (zypp::solver::detail::ItemCapKindList::const_iterator it = satisfiedList.begin();
+	 it != satisfiedList.end(); it++) {
+	QString idStr = QString( "%1" ).arg( id++ );
+
+	childList.append(ResGraphView::targetData(idStr));		    
+	m_RevGraphView->m_Tree[idStr].item=it->item;
+	m_RevGraphView->m_Tree[idStr].dueto = *it;
+
+	alreadyHitItems.insert (item);
+    }
+}
+
+
+
 #include "restreewidget.moc"
 
