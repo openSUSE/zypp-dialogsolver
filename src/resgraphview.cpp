@@ -340,6 +340,10 @@ QColor ResGraphView::getBgColor(const QString&nodeName)const
     it = m_Tree.find(nodeName);
     if (it==m_Tree.end())
         return Qt::white;
+
+    if (it.data().item.status().staysInstalled())
+	return QColor(Qt::green).lighter(190);	
+	
     if (it.data().item->isKind( ResKind::product )) 
 	return Qt::magenta;
     if (it.data().item->isKind( ResKind::pattern )) 

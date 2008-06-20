@@ -124,7 +124,7 @@ bool SolverTree::isValid()const
 
 
 void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
-    // generate the branches
+    // generate the branches for items which will really be installed
     zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
     for (zypp::solver::detail::ItemCapKindList::const_iterator it = installList.begin();
 	 it != installList.end(); it++) {
@@ -142,7 +142,20 @@ void SolverTree::buildTree ( StreeData *data,  ResGraphView::tlist &childList, c
 	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end())
 		buildTree ( data, data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
 	}
-    }    
+    }
+
+    // generate the branches for items which are already installed
+    zypp::solver::detail::ItemCapKindList satisfiedList = resolver->satifiedByInstalled (item);
+    for (zypp::solver::detail::ItemCapKindList::const_iterator it = satisfiedList.begin();
+	 it != satisfiedList.end(); it++) {
+	QString idStr = QString( "%1" ).arg( id++ );
+
+	childList.append(ResGraphView::targetData(idStr));		    
+	data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].item=it->item;
+	data->m_TreeDisplay->m_RevGraphView->m_Tree[idStr].dueto = *it;
+
+	alreadyHitItems.insert (item);
+    }
 }
 
 
