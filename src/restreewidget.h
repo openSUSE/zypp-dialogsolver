@@ -80,7 +80,8 @@ protected:
     
     void selectItem(const QString & itemString);
     void buildTreeBranch (ResGraphView::tlist &childList, const zypp::PoolItem item, int &id);
-    
+
+    QString _lastSelectedItem;
 
 protected slots:
     virtual void setDetailText(const QString&, const zypp::PoolItem);

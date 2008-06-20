@@ -46,6 +46,7 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     : QWidget( parent, name, fl )
       ,resolver(r)
 {
+    _lastSelectedItem = "";    
     if ( !name )
         setName( "ResTreeWidget" );
     ResTreeWidgetLayout = new QVBoxLayout( this, 11, 6, "ResTreeWidgetLayout");
@@ -118,6 +119,7 @@ void ResTreeWidget::dumpRevtree()
     m_RevGraphView->dumpRevtree();
     if (m_RevGraphView
 	&& resolvableList) {
+	resolvableList->clear();
 	// creating entries in the combobox
 	ResGraphView::trevTree::ConstIterator it;
 	QStringList stringList;
@@ -135,6 +137,7 @@ void ResTreeWidget::dumpRevtree()
 	stringList.sort();
 	resolvableList->insertStringList (stringList);
     }
+    selectItem(_lastSelectedItem); // Show the selected item (Could be set via API meanwhile)
 }
 
 void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
@@ -189,6 +192,7 @@ void ResTreeWidget::slotComboActivated( const QString &s ) {
 }
 
 void ResTreeWidget::selectItem(const QString & itemString) {
+    _lastSelectedItem = itemString;
     m_RevGraphView->selectItem (itemString );
 }
 
@@ -285,6 +289,7 @@ void ResTreeWidget::buildTree() {
 	}
     }
     dumpRevtree();
+    selectItem(_lastSelectedItem);
 }  
     
 void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
