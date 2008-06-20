@@ -87,6 +87,7 @@ protected slots:
     void itemSelected( Q3ListViewItem* item);    
     void slotComboActivated( const QString &s );
     void showInstalledChanged(int state);
+    void showRecommendChanged(int state);
     
 private:
     QPixmap image0;

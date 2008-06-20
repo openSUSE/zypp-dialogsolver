@@ -955,4 +955,44 @@ void ResGraphView::selectItem(const QString & itemString) {
     }
 }
 
+void ResGraphView::init()
+{
+    setCanvas(0);
+    if (m_Canvas)
+       delete m_Canvas;
+    if (dotTmpFile)
+       delete dotTmpFile;
+    if (m_CompleteView)
+       delete m_CompleteView;
+    if (renderProcess)
+       delete renderProcess;
+
+    m_Canvas = 0L;
+    dotTmpFile = 0;
+    m_Selected = 0;
+    renderProcess = 0;
+    m_Marker = 0;
+    m_CompleteView = new PannerView(this);
+    
+    m_CompleteView->setVScrollBarMode(Q3ScrollView::AlwaysOff);
+    m_CompleteView->setHScrollBarMode(Q3ScrollView::AlwaysOff);
+    m_CompleteView->raise();
+    m_CompleteView->hide();
+    connect(this, SIGNAL(contentsMoving(int,int)),
+            this, SLOT(contentsMovingSlot(int,int)));
+    connect(m_CompleteView, SIGNAL(zoomRectMoved(int,int)),
+            this, SLOT(zoomRectMoved(int,int)));
+    connect(m_CompleteView, SIGNAL(zoomRectMoveFinished()),
+            this, SLOT(zoomRectMoveFinished()));
+    m_LastAutoPosition = TopLeft;
+    _isMoving = false;
+    _noUpdateZoomerPos = false;
+    m_LabelMap[""]="";
+    m_Tree.clear();
+    m_NodeList.clear();
+    m_LabelMap.clear();
+    
+}
+
+
 #include "resgraphview.moc"

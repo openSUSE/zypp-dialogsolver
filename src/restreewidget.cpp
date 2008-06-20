@@ -24,6 +24,7 @@
 #include <q3textbrowser.h>
 #include <qlayout.h>
 #include <qtooltip.h>
+#include <qmessagebox.h>
 #include <qwhatsthis.h>
 #include <q3hbox.h>
 #include <q3vbox.h>
@@ -33,6 +34,8 @@
 #include <qnamespace.h>
 #include "resgraphview.h"
 #include "zypp/Resolver.h"
+#include "zypp/ZYppFactory.h"
+#include "zypp/ResFilters.h"
 #include "getText.h"
 
 /*
@@ -63,6 +66,8 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     checkBox->setSpacing (5);
     showInstalled = new QCheckBox(i18n("show installed packages"), checkBox);
     showRecommend = new QCheckBox(i18n("show recommended packages"), checkBox);;
+    showInstalled->setChecked(false);
+    showRecommend->setChecked(!resolver->onlyRequires());
     
     searchBox = new Q3HBox( descriptionBox, "searchBox");
     searchBox->setSpacing (5);
@@ -94,7 +99,8 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     connect( installedListView, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( itemSelected( Q3ListViewItem* ) ) );
     connect( installListView, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( itemSelected( Q3ListViewItem* ) ) );
     connect( resolvableList, SIGNAL( activated( const QString & ) ), this, SLOT( slotComboActivated( const QString & ) ) );
-    connect( showInstalled, SIGNAL( stateChanged ( int state )  ), this, SLOT( showInstalledChanged ( int state ) ) );        
+    connect( showRecommend, SIGNAL( stateChanged ( int )  ), this, SLOT( showRecommendChanged ( int ) ) );
+    connect( showInstalled, SIGNAL( stateChanged ( int )  ), this, SLOT( showInstalledChanged ( int ) ) );
     
     ResTreeWidgetLayout->addWidget(m_Splitter);
     
@@ -203,8 +209,43 @@ void ResTreeWidget::itemSelected( Q3ListViewItem* item) {
     selectItem (item->text( 0 )+"-"+item->text( 1 ) );
 }
 
-void ResTreeWidget::showInstalledChanged(int state) {
+void ResTreeWidget::showRecommendChanged(int state) {
+    zypp::ResPool pool( zypp::getZYpp()->pool() );
+    pool.proxy().saveState(); // Save old pool
+    const QCursor oldCursor = cursor ();
+    setCursor (Qt::WaitCursor); 		    
+
+    bool saveRec = resolver->onlyRequires();
     
+    // and resolve		    
+    resolver = new zypp::solver::detail::Resolver( pool );
+    if (!showRecommend->isChecked()) {
+	resolver->setOnlyRequires(true);
+    } else {
+	resolver->setOnlyRequires(false);	
+    }
+    resolver->resolvePool();
+    if (resolver == NULL
+	|| (resolver->problems()).size() > 0 ) {
+	QMessageBox::critical( 0,
+			       i18n("Critical Error") ,
+			       i18n("No valid solver result"));
+    }
+
+    // show result
+    m_RevGraphView->init();
+    buildTree();
+
+    pool.proxy().restoreState(); // Restore old state
+    resolver->setOnlyRequires(saveRec);
+    setCursor (oldCursor);         
+}
+
+
+void ResTreeWidget::showInstalledChanged(int state) {
+    // state will be regarded while establish the tree
+    m_RevGraphView->init();
+    buildTree();    
 }
 
 
@@ -266,18 +307,20 @@ void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp
 		buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
 	}
     }
+    
+    if (showInstalled->isChecked()) {
+	// generate the branches for items which are already installed
+	zypp::solver::detail::ItemCapKindList satisfiedList = resolver->satifiedByInstalled (item);
+	for (zypp::solver::detail::ItemCapKindList::const_iterator it = satisfiedList.begin();
+	     it != satisfiedList.end(); it++) {
+	    QString idStr = QString( "%1" ).arg( id++ );
 
-    // generate the branches for items which are already installed
-    zypp::solver::detail::ItemCapKindList satisfiedList = resolver->satifiedByInstalled (item);
-    for (zypp::solver::detail::ItemCapKindList::const_iterator it = satisfiedList.begin();
-	 it != satisfiedList.end(); it++) {
-	QString idStr = QString( "%1" ).arg( id++ );
+	    childList.append(ResGraphView::targetData(idStr));		    
+	    m_RevGraphView->m_Tree[idStr].item=it->item;
+	    m_RevGraphView->m_Tree[idStr].dueto = *it;
 
-	childList.append(ResGraphView::targetData(idStr));		    
-	m_RevGraphView->m_Tree[idStr].item=it->item;
-	m_RevGraphView->m_Tree[idStr].dueto = *it;
-
-	alreadyHitItems.insert (item);
+	    alreadyHitItems.insert (item);
+	}
     }
 }
 

@@ -60,6 +60,7 @@ public:
 
     void showText(const QString&s);
     void clear();
+    void init();
 
     void beginInsert();
     void endInsert();

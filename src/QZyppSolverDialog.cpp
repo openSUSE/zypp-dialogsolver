@@ -83,6 +83,7 @@ QZyppSolverDialog::QZyppSolverDialog(const zypp::PoolItem item)
 			       i18n("Critical Error") ,
 			       i18n("No valid solver result"));
     }
+    setCursor (oldCursor);     
 }
 
 
