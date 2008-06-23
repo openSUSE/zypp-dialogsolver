@@ -170,6 +170,25 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 							QString(iter->capKind.asString().c_str()));
 	    element = NULL;
 	}
+
+	if (item.status().staysInstalled()) {
+	    // Items which are installed. So they are already satifying requirements of others
+	    zypp::solver::detail::ItemCapKindList installedSatisfied = resolver->installedSatisfied(item);
+	    for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installedSatisfied.begin();
+		 iter != installedSatisfied.end(); ++iter) {
+		QString edition = iter->item->edition().asString().c_str();
+		edition += ".";
+		edition += iter->item->arch().asString().c_str();
+
+		Q3ListViewItem *element = new Q3ListViewItem( installedListView,
+							      QString(iter->item->name().c_str()),
+							      edition,
+							      QString(iter->cap.asString().c_str()),
+							      QString(iter->capKind.asString().c_str()));
+		element = NULL;
+	    }
+	}
+	    
 	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installList.begin();
 	     iter != installList.end(); ++iter) {
 	    QString edition = iter->item->edition().asString().c_str();
