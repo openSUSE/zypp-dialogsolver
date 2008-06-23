@@ -7,6 +7,11 @@ Mon Jun 16 17:48:19 CEST 2008 - schubi@suse.de
 - version 1.2.0 
 
 -------------------------------------------------------------------
+Fri May 23 07:00:33 CEST 2008 - coolo@suse.de
+
+- cleanup spec
+
+-------------------------------------------------------------------
 Tue May 20 09:10:05 CEST 2008 - schubi@suse.de
 
 - adapt to the new SAT solver
