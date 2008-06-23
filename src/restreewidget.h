@@ -53,18 +53,22 @@ class ResTreeWidget : public QWidget
     Q_OBJECT
 
 public:
-    ResTreeWidget(QWidget* parent = 0, zypp::solver::detail::Resolver_Ptr r = NULL, const char* name = 0, Qt::WFlags fl = 0 );
+    ResTreeWidget(QWidget* parent = 0, zypp::solver::detail::Resolver_Ptr r = NULL,
+		  const zypp::PoolItem item = zypp::PoolItem(),
+		  const char* name = 0, Qt::WFlags fl = 0 );
     ~ResTreeWidget();
 
     QSplitter* m_Splitter;
     ResGraphView* m_RevGraphView;
-    zypp::solver::detail::Resolver_Ptr resolver;
     void selectItem(const zypp::PoolItem item);    
 
     void dumpRevtree();
     void buildTree();
 
 protected:
+    zypp::solver::detail::Resolver_Ptr resolver;
+    zypp::PoolItem root_item;
+    
     QVBoxLayout* ResTreeWidgetLayout;
     Q3VBox *descriptionBox;
     Q3HBox *searchBox;

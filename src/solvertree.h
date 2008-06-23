@@ -32,7 +32,8 @@ class QWidget;
 class SolverTree{
 public:
     SolverTree( QWidget*treeParent,
-		zypp::solver::detail::Resolver_Ptr r = NULL);
+		zypp::solver::detail::Resolver_Ptr r = NULL,
+		const zypp::PoolItem item = zypp::PoolItem());
     virtual ~SolverTree();
 
     bool isValid()const;
@@ -42,6 +43,7 @@ public:
 protected:
     bool m_Valid;
     zypp::solver::detail::Resolver_Ptr resolver;
+    zypp::PoolItem root_item;
     StreeData*m_Data;
 
 };

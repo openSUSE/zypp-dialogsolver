@@ -72,7 +72,7 @@ QZyppSolverDialog::QZyppSolverDialog(const zypp::PoolItem item)
     
     // show the results
     QHBoxLayout* layout = new QHBoxLayout (this);
-    solvertree = new SolverTree(this, resolver);
+    solvertree = new SolverTree(this, resolver,item);
     layout->addWidget( solvertree->getView());
     selectItem(item);
     pool.proxy().restoreState(); // Restore old state

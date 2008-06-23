@@ -59,14 +59,16 @@ StreeData::~StreeData()
 
 
 SolverTree::SolverTree( QWidget*treeParent,
-			zypp::solver::detail::Resolver_Ptr r)
+			zypp::solver::detail::Resolver_Ptr r,
+			const zypp::PoolItem item)
     :m_Valid(false)
      ,resolver(r)
+     ,root_item(item)
 {
     m_Data = new StreeData;
 
     m_Data->m_stopTick.restart();
-    m_Data->m_TreeDisplay=new ResTreeWidget(treeParent, resolver);
+    m_Data->m_TreeDisplay=new ResTreeWidget(treeParent, resolver, root_item);
     m_Data->m_TreeDisplay->setMinimumSize ( 700, 700 );
     m_Data->m_TreeDisplay->buildTree();
     

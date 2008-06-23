@@ -36,15 +36,21 @@
 #include "zypp/Resolver.h"
 #include "zypp/ZYppFactory.h"
 #include "zypp/ResFilters.h"
+#include "zypp/base/Algorithm.h"
 #include "getText.h"
+
+using namespace zypp;
 
 /*
  *  Constructs a ResTreeWidget as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
  */
-ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr r, const char* name, Qt::WFlags fl) 
+ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr r,
+			     const zypp::PoolItem item,
+			     const char* name, Qt::WFlags fl) 
     : QWidget( parent, name, fl )
       ,resolver(r)
+      ,root_item(item)
 {
     _lastSelectedItem = "";    
     if ( !name )
@@ -68,7 +74,10 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     showInstalled = new QCheckBox(i18n("show installed packages"), checkBox);
     showRecommend = new QCheckBox(i18n("show recommended packages"), checkBox);;
     showInstalled->setChecked(false);
-    showRecommend->setChecked(!resolver->onlyRequires());
+    if (resolver->onlyRequires()) 
+	showRecommend->setChecked(false);
+    else
+	showRecommend->setChecked(true);	
     
     searchBox = new Q3HBox( descriptionBox, "searchBox");
     searchBox->setSpacing (5);
@@ -213,14 +222,41 @@ void ResTreeWidget::itemSelected( Q3ListViewItem* item) {
     selectItem (item->text( 0 )+"-"+item->text( 1 ) );
 }
 
+struct UndoTransact : public resfilter::PoolItemFilterFunctor
+{
+    ResStatus::TransactByValue resStatus;
+    UndoTransact ( const ResStatus::TransactByValue &status)
+       :resStatus(status)
+    { }
+
+    bool operator()( PoolItem item )           // only transacts() items go here
+    {
+       item.status().resetTransact( resStatus );// clear any solver/establish transactions
+       return true;
+    }
+};
+
+
 void ResTreeWidget::showRecommendChanged(int state) {
     zypp::ResPool pool( zypp::getZYpp()->pool() );
     pool.proxy().saveState(); // Save old pool
     const QCursor oldCursor = cursor ();
-    setCursor (Qt::WaitCursor); 		    
-
+    setCursor (Qt::WaitCursor);
+    pool.proxy().saveState(); // Save old pool
     bool saveRec = resolver->onlyRequires();
     
+    if (root_item != PoolItem()) {
+	// Make a solver run with the selected item
+	// resetting all selections
+	UndoTransact resetting (ResStatus::USER);
+	invokeOnEach ( pool.begin(), pool.end(),
+		       resfilter::ByTransact( ),                    // Resetting all transcations
+		       functor::functorRef<bool,PoolItem>(resetting) );
+ 
+	// set the selected item for installation only
+	root_item.status().setToBeInstalled( ResStatus::USER);
+    }
+
     // and resolve		    
     resolver = new zypp::solver::detail::Resolver( pool );
     if (!showRecommend->isChecked()) {
@@ -247,9 +283,14 @@ void ResTreeWidget::showRecommendChanged(int state) {
 
 
 void ResTreeWidget::showInstalledChanged(int state) {
-    // state will be regarded while establish the tree
-    m_RevGraphView->init();
-    buildTree();    
+    if (root_item != PoolItem()) {
+	// Make a solver run with the selected item
+	showRecommendChanged(0);
+    } else {
+	// state will be regarded while establish the tree
+	m_RevGraphView->init();
+	buildTree();
+    }
 }
 
 
