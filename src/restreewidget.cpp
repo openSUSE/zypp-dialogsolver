@@ -73,7 +73,7 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     checkBox->setSpacing (5);
     showInstalled = new QCheckBox(i18n("show installed packages"), checkBox);
     showRecommend = new QCheckBox(i18n("show recommended packages"), checkBox);;
-    showInstalled->setChecked(false);
+    showInstalled->setChecked(true);
     if (resolver->onlyRequires()) 
 	showRecommend->setChecked(false);
     else
@@ -317,35 +317,45 @@ void ResTreeWidget::buildTree() {
     if (resolver != NULL) {
 	alreadyHitItems.clear();
 	int id = 0;
-	for (zypp::ResPool::const_iterator it = resolver->pool().begin();
-	     it != resolver->pool().end();
-	     ++it)
-	{ // find all root items and generate 
-	    if (it->status().isToBeInstalled()) {
+	if (root_item == PoolItem()) {
+	    // Ask the pool which items has been selected for installation
+	    for (zypp::ResPool::const_iterator it = resolver->pool().begin();
+		 it != resolver->pool().end();
+		 ++it)
+	    { // find all root items and generate 
+		if (it->status().isToBeInstalled()) {
 		
-		zypp::ResObject::constPtr r = it->resolvable();		
-		bool rootfound = false;
-		zypp::solver::detail::ItemCapKindList isInstalledList = resolver->isInstalledBy (*it);		
-		if (isInstalledList.empty()) {
-		    rootfound = true;
-		} else {
-		    rootfound = true;
-		    for (zypp::solver::detail::ItemCapKindList::const_iterator isInstall = isInstalledList.begin();
-			 isInstall != isInstalledList.end(); isInstall++) {
-			if (isInstall->initialInstallation) {
-			    rootfound = false;
+		    zypp::ResObject::constPtr r = it->resolvable();		
+		    bool rootfound = false;
+		    zypp::solver::detail::ItemCapKindList isInstalledList = resolver->isInstalledBy (*it);		
+		    if (isInstalledList.empty()) {
+			rootfound = true;
+		    } else {
+			rootfound = true;
+			for (zypp::solver::detail::ItemCapKindList::const_iterator isInstall = isInstalledList.begin();
+			     isInstall != isInstalledList.end(); isInstall++) {
+			    if (isInstall->initialInstallation) {
+				rootfound = false;
+			    }
 			}
 		    }
-		}
 
-		if (rootfound) {
-		    QString idStr = QString( "%1" ).arg( id++ );		    
-		    m_RevGraphView->m_Tree[idStr].item = *it;
+		    if (rootfound) {
+			QString idStr = QString( "%1" ).arg( id++ );		    
+			m_RevGraphView->m_Tree[idStr].item = *it;
 
-		    // we have found a root; collect all trees
-		    buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, *it, id);
-		}
-	    }	
+			// we have found a root; collect all trees
+			buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, *it, id);
+		    }
+		}	
+	    }
+	} else {
+	    // take the selected root item for "root"
+	    QString idStr = QString( "%1" ).arg( id++ );		    
+	    m_RevGraphView->m_Tree[idStr].item = root_item;
+
+	    // collect all trees
+	    buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, root_item, id);
 	}
     }
     dumpRevtree();
