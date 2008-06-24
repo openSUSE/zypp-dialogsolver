@@ -343,11 +343,11 @@ QColor ResGraphView::getBgColor(const QString&nodeName)const
 	return QColor(Qt::green).lighter(190);	
 	
     if (it.data().item->isKind( ResKind::product )) 
-	return Qt::magenta;
+	return QColor(Qt::magenta).lighter(190);
     if (it.data().item->isKind( ResKind::pattern )) 
-	return Qt::blue;
+	return QColor(Qt::blue).lighter(190);
     if (it.data().item->isKind( ResKind::patch )) 
-	return Qt::yellow;
+	return QColor(Qt::yellow).lighter(190);
     
     return Qt::white;
 }
