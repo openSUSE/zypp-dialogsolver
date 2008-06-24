@@ -382,21 +382,24 @@ void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp
 		buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
 	}
     }
-    
+
     if (showInstalled->isChecked()) {
 	// generate the branches for items which are already installed
 	zypp::solver::detail::ItemCapKindList satisfiedList = resolver->satifiedByInstalled (item);
 	for (zypp::solver::detail::ItemCapKindList::const_iterator it = satisfiedList.begin();
 	     it != satisfiedList.end(); it++) {
-	    QString idStr = QString( "%1" ).arg( id++ );
+	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end()) {	    
+		QString idStr = QString( "%1" ).arg( id++ );
 
-	    childList.append(ResGraphView::targetData(idStr));		    
-	    m_RevGraphView->m_Tree[idStr].item=it->item;
-	    m_RevGraphView->m_Tree[idStr].dueto = *it;
+		childList.append(ResGraphView::targetData(idStr));		    
+		m_RevGraphView->m_Tree[idStr].item=it->item;
+		m_RevGraphView->m_Tree[idStr].dueto = *it;
 
-	    alreadyHitItems.insert (item);
+		alreadyHitItems.insert (it->item);
+	    }
 	}
     }
+
 }
 
 
