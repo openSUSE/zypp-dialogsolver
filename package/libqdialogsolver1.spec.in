@@ -19,7 +19,7 @@ Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`) graphviz
 Autoreqprov:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  gcc-c++ libqt4-devel gettext-devel
+BuildRequires:  gcc-c++ libqt4-devel gettext-devel cmake yast2-libyui-devel
 
 
 # API Changes in zypp 2.1
@@ -75,10 +75,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%{_libdir}/libqdialogsolver*so.*
+%{_libdir}/libqdialogsolver*so*
+%{_libdir}/YaST2/plugin/libpy2qt_zypp_solver_dialog*so*
 
 %files devel
 %defattr(-,root,root)
-%dir %{_libdir}/libqdialogsolver.so
+%{_libdir}/libqdialogsolver.so
 %dir /usr/include/zypp
 /usr/include/zypp/*

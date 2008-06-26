@@ -4,6 +4,7 @@ Mon Jun 16 17:48:19 CEST 2008 - schubi@suse.de
 - Translations support added
 - switched to qt4
 - switched to cmake
+- added YaST plugin
 - version 1.2.0 
 
 -------------------------------------------------------------------

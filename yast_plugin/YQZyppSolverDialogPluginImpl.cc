@@ -20,7 +20,7 @@
 
 #define YUILogComponent "qt-solver-dialog"
 #include <YUILog.h>
-#include "zypp/QZyppSolverDialog.h"
+#include "QZyppSolverDialog.h"
 
 ///////////////////////////////////////////////////////////////////
 //
