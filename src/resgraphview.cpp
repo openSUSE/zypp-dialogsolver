@@ -495,6 +495,9 @@ QString ResGraphView::toolTip(const QString&_nodename,bool full)const
         sm.truncate(47);
         sm+="...";
     }
+
+    sm = QString::fromUtf8(sm);
+    
     static QString csep = "</td><td>";
     static QString rend = "</td></tr>";
     static QString rstart = "<tr><td>";
