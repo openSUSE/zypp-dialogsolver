@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Jul  2 08:53:47 CEST 2008 - schubi@suse.de
+
+- fixed spec file (directories) 
+
+-------------------------------------------------------------------
 Mon Jun 16 17:48:19 CEST 2008 - schubi@suse.de
 
 - Translations support added
