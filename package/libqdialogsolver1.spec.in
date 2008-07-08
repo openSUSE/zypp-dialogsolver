@@ -26,7 +26,6 @@ BuildRequires:  gcc-c++ libqt4-devel gettext-devel cmake yast2-libyui-devel
 BuildRequires: libzypp-devel >= 2.8.7
 
 Source:        libqdialogsolver1-%{version}.tar.bz2
-Prefix:         /usr
 
 %description
 This package provides a QDialog class for showing solver results
@@ -82,6 +81,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-,root,root)
-%{_libdir}/libqdialogsolver.so
 %dir /usr/include/zypp
 /usr/include/zypp/*
