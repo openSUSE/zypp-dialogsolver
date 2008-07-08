@@ -76,10 +76,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %dir %{_libdir}/YaST2/plugin
 %dir %{_libdir}/YaST2
-%{_libdir}/libqdialogsolver*so*
-%{_libdir}/YaST2/plugin/libpy2qt_zypp_solver_dialog*so*
+%{_libdir}/libqdialogsolver.so.1
+%{_libdir}/YaST2/plugin/libpy2qt_zypp_solver_dialog.so.2
 
 %files devel
 %defattr(-,root,root)
 %dir /usr/include/zypp
 /usr/include/zypp/*
+%{_libdir}/libqdialogsolver.so
+%{_libdir}/YaST2/plugin/libpy2qt_zypp_solver_dialog.so
+
+
