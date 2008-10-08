@@ -75,7 +75,7 @@ cd ..
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f qdialogsolver.lang
+%files -f dialogsolver.lang
 %defattr(-,root,root)
 %dir %{_libdir}/YaST2/plugin
 %dir %{_libdir}/YaST2
