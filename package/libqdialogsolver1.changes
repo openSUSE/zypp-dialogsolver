@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Oct  8 19:31:13 CEST 2008 - schubi@suse.de
+
+- added translations
+- version 1.2.1 
+
+-------------------------------------------------------------------
 Thu Jul 17 14:18:44 CEST 2008 - ma@suse.de
 
 - Use ${LIB_INSTALL_DIR} to install libs 
