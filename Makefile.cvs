@@ -2,8 +2,6 @@
 # Makefile.cvs
 #
 
-LIB = $(shell get-lib)
-
 PREFIX = /usr
 
 configure: 
