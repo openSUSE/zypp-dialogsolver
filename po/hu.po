@@ -1,16 +1,18 @@
+# translation of dialogsolver.hu.po to
+# Kalman Kemenczy <kkemenczy@novell.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: dialogsolver.hu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-08 09:35+0200\n"
-"PO-Revision-Date: 2006-02-10 11:24+0100\n"
+"PO-Revision-Date: 2008-10-20 05:35+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
-"Language-Team: Hungarian <en@li.org>\n"
+"Language-Team:  <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/QZyppSolverDialog.cpp:29 ../src/QZyppSolverDialog.cpp:83
 #: ../src/restreewidget.cpp:290
@@ -19,9 +21,8 @@ msgstr ""
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:29
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:83
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:290
-#, fuzzy
 msgid "Critical Error"
-msgstr "Kritikus"
+msgstr "Kritikus hiba"
 
 #: ../src/QZyppSolverDialog.cpp:30 ../src/QZyppSolverDialog.cpp:84
 #: ../src/restreewidget.cpp:291
@@ -31,25 +32,22 @@ msgstr "Kritikus"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:291
 msgid "No valid solver result"
-msgstr ""
+msgstr "Nincs érvényes feloldás"
 
 #: ../src/restreewidget.cpp:74
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:74
-#, fuzzy
 msgid "show installed packages"
-msgstr "Telepített csomagok beolvasása"
+msgstr "telepített csomagok megjelenítése"
 
 #: ../src/restreewidget.cpp:75
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:75
-#, fuzzy
 msgid "show recommended packages"
-msgstr "A(z) %s csomagot ajánlja a(z) %s csomag"
+msgstr "ajánlott csomagok megjelenítése"
 
 #: ../src/restreewidget.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:65
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:65
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:84
-#, fuzzy
 msgid "Search: "
 msgstr "Keresés:"
 
@@ -88,9 +86,8 @@ msgstr "Verzió"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:85
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:96
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:104
-#, fuzzy
 msgid "Dependency"
-msgstr "Függőségek"
+msgstr "Függőség"
 
 #: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:78
@@ -100,142 +97,133 @@ msgstr "Függőségek"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:97
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:105
 msgid "Kind"
-msgstr ""
+msgstr "Típus"
 
 #: ../src/restreewidget.cpp:99
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:99
-#, fuzzy
 msgid "Needs"
-msgstr "Folyamok"
+msgstr "Szükséges"
 
 #: ../src/restreewidget.cpp:107
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:107
-#, fuzzy
 msgid "Needed by"
-msgstr "Szükséges"
+msgstr "Igényli"
 
 #: ../src/resgraphview.cpp:310
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:310
 msgid "Error running the graph layouting tool.\n"
-msgstr ""
+msgstr "Hiba a grafikus szerkezeti eszköz futtatásakor.\n"
 
 #: ../src/resgraphview.cpp:311
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:311
 msgid "Please check that 'dot' is installed (package GraphViz)."
-msgstr ""
+msgstr "Ellenőrizze, hogy a 'dot' telepítve van-e. (GraphViz csomag)."
 
 #: ../src/resgraphview.cpp:405
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:405
-#, fuzzy
 msgid "Could not open tempfile %1 for writing."
-msgstr "Nincs írási jog a fájlhoz."
+msgstr "Nem nyitható meg íráshoz a(z) %1 átmeneti fájl."
 
 #: ../src/resgraphview.cpp:465
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:465
-#, fuzzy
 msgid "Could not start process \"%1\"."
-msgstr "%1 nem érhető el"
+msgstr "A(z) \"%1\" folyamat nem indítható el."
 
 #: ../src/resgraphview.cpp:511
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:511
 msgid "<br>Kind: %1<br>Version: %2<br>Source: %3</html>"
-msgstr ""
+msgstr "<br>Típus: %1<br>Verzió: %2<br>Forrás: %3</html>"
 
 #: ../src/resgraphview.cpp:517
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:544
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:544
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:517
 msgid "<b>Name</b>%1%2%3"
-msgstr ""
+msgstr "<b>Név</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:518
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:545
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:545
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:518
 msgid "<b>Kind</b>%1%2%3"
-msgstr ""
+msgstr "<b>Típus</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:522
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:549
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:549
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:522
 msgid "<b>Version</b>%1%2%3"
-msgstr ""
+msgstr "<b>Verzió</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:523
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:550
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:550
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:523
-#, fuzzy
 msgid "<b>Source</b>%1%2%3"
-msgstr "<b>Keresés:</b>"
+msgstr "<b>Forrás</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:524
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:551
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:551
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:524
-#, fuzzy
 msgid "<b>Description</b>%1%2%3"
-msgstr "Leírás"
+msgstr "<b>Leírás</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:825
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:854
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:854
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:825
-#, fuzzy
 msgid "Unselect item"
-msgstr "Válasszon parancsfájlt"
+msgstr "Kijelölés megszüntetése"
 
 #: ../src/resgraphview.cpp:827
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:856
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:856
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:827
-#, fuzzy
 msgid "Select item"
-msgstr "Válasszon parancsfájlt"
+msgstr "Kijelölés"
 
 # /tmp/xapi:281
 #: ../src/resgraphview.cpp:830
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:859
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:859
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:830
-#, fuzzy
 msgid "Display details"
-msgstr "Képernyő mérete"
+msgstr "Részletek megjelenítése"
 
 #: ../src/resgraphview.cpp:833
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:833
 msgid "Rotate counter-clockwise"
-msgstr ""
+msgstr "Forgatás órajárással ellenkező irányba"
 
 # /tmp/intro:67 /tmp/xapi:379
 #: ../src/resgraphview.cpp:834
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:834
-#, fuzzy
 msgid "Rotate clockwise"
-msgstr "Képernyő elforgatása"
+msgstr "Forgatás órajárással megegyező irányba"
 
 #: ../src/resgraphview.cpp:837
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:837
 msgid "Save tree as png"
-msgstr ""
+msgstr "Fa lementése png formátumba"
+

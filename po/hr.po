@@ -86,7 +86,7 @@ msgstr "Verzija"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:96
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:104
 msgid "Dependency"
-msgstr ""
+msgstr "Ovisnosti"
 
 #: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:78
