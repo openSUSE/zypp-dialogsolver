@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: dialogsolver.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-08 09:35+0200\n"
-"PO-Revision-Date: 2008-08-14 15:09+0900\n"
+"PO-Revision-Date: 2008-11-02 05:02+0900\n"
 "Last-Translator: YunSeok Choi <xein@naver.com>\n"
 "Language-Team: Korean <xein@naver.com>\n"
 "MIME-Version: 1.0\n"
@@ -104,21 +104,21 @@ msgstr "의존성"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:97
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:105
 msgid "Kind"
-msgstr ""
+msgstr "종류"
 
 #: ../src/restreewidget.cpp:99
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:99
 msgid "Needs"
-msgstr ""
+msgstr "필요"
 
 #: ../src/restreewidget.cpp:107
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:107
 msgid "Needed by"
-msgstr ""
+msgstr "요구사항"
 
 #: ../src/resgraphview.cpp:310
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
@@ -153,7 +153,7 @@ msgstr "프로세스 \"%1\" 을 시작할 수 없습니다."
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:511
 msgid "<br>Kind: %1<br>Version: %2<br>Source: %3</html>"
-msgstr ""
+msgstr "<br>종류: %1<br>버전: %2<br>소스: %3</html>"
 
 #: ../src/resgraphview.cpp:517
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:544
@@ -167,7 +167,7 @@ msgstr "<b>이름</b>%1%2%3"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:545
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:518
 msgid "<b>Kind</b>%1%2%3"
-msgstr ""
+msgstr "<b>종류</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:522
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:549
@@ -209,7 +209,7 @@ msgstr "아이템 선택"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:859
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:830
 msgid "Display details"
-msgstr "자세히 보기"
+msgstr "자세히 표시"
 
 #: ../src/resgraphview.cpp:833
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
