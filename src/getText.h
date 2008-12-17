@@ -18,13 +18,13 @@
 #define N_(MSG) QString(MSG)
 
 /** Return translated text. */
-#define _(MSG) QString(::dialogsolver::dgettext( MSG ))
+#define _(MSG) QString::fromUtf8(::dialogsolver::dgettext( MSG ))
 
 /** Return translated text. */
-#define i18n(MSG) QString(::dialogsolver::dgettext( MSG ))
+#define i18n(MSG) QString::fromUtf8(::dialogsolver::dgettext( MSG ))
 
 /** Return translated text (plural form). */
-#define _PL(MSG1,MSG2,N) QString(::dialogsolver::dngettext( MSG1; MSG2, N ))
+#define _PL(MSG1,MSG2,N) QString::fromUtf8(::dialogsolver::dngettext( MSG1; MSG2, N ))
 
 ///////////////////////////////////////////////////////////////////
 namespace dialogsolver
