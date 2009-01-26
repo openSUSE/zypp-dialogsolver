@@ -226,4 +226,3 @@ msgstr "Forgatás órajárással megegyező irányba"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:837
 msgid "Save tree as png"
 msgstr "Fa lementése png formátumba"
-

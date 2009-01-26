@@ -1,23 +1,17 @@
-# translation of dialogsolver.po to Traditional Chinese
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# swyear <swyear@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: dialogsolver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-08 09:35+0200\n"
-"PO-Revision-Date: 2008-10-12 16:16+0800\n"
-"Last-Translator: swyear <swyear@gmail.com>\n"
-"Language-Team: Traditional Chinese <opensuse-translation@opensuse.org>\n"
+"PO-Revision-Date: 2009-01-21 13:40\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src/QZyppSolverDialog.cpp:29 ../src/QZyppSolverDialog.cpp:83
 #: ../src/restreewidget.cpp:290
@@ -27,7 +21,7 @@ msgstr ""
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:83
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:290
 msgid "Critical Error"
-msgstr "緊急的錯誤"
+msgstr "嚴重錯誤"
 
 #: ../src/QZyppSolverDialog.cpp:30 ../src/QZyppSolverDialog.cpp:84
 #: ../src/restreewidget.cpp:291
@@ -37,7 +31,7 @@ msgstr "緊急的錯誤"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:291
 msgid "No valid solver result"
-msgstr "沒有可用的解決方案"
+msgstr "沒有可用的解析結果"
 
 #: ../src/restreewidget.cpp:74
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:74
@@ -47,7 +41,7 @@ msgstr "顯示已安裝的套件"
 #: ../src/restreewidget.cpp:75
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:75
 msgid "show recommended packages"
-msgstr "顯示建議的套件"
+msgstr "顯示推薦的套件"
 
 #: ../src/restreewidget.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:65
@@ -101,7 +95,7 @@ msgstr "相依性"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:97
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:105
 msgid "Kind"
-msgstr "種類"
+msgstr "類型"
 
 #: ../src/restreewidget.cpp:99
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
@@ -115,42 +109,42 @@ msgstr "需要"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:107
 msgid "Needed by"
-msgstr "被...需要"
+msgstr "需要者"
 
 #: ../src/resgraphview.cpp:310
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:310
 msgid "Error running the graph layouting tool.\n"
-msgstr "執行圖形介面工具發生錯誤。\n"
+msgstr "執行圖形配置工具時發生錯誤。\n"
 
 #: ../src/resgraphview.cpp:311
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:311
 msgid "Please check that 'dot' is installed (package GraphViz)."
-msgstr "請檢查 'dot' 已安裝 (套件 GraphViz)。"
+msgstr "請檢查是否已安裝「dot」(套件 GraphViz)。"
 
 #: ../src/resgraphview.cpp:405
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:405
 msgid "Could not open tempfile %1 for writing."
-msgstr "無法開啟暫存檔 %1 來撰寫。"
+msgstr "無法開啟暫存檔 %1 以便寫入。"
 
 #: ../src/resgraphview.cpp:465
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:465
 msgid "Could not start process \"%1\"."
-msgstr "無法啟動程序 \"%1\"。"
+msgstr "無法啟動程序「%1」。"
 
 #: ../src/resgraphview.cpp:511
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:511
 msgid "<br>Kind: %1<br>Version: %2<br>Source: %3</html>"
-msgstr "<br>種類： %1<br>版本： %2<br>來源： %3</html>"
+msgstr "<br>類型：%1<br>版本：%2<br>來源：%3</html>"
 
 #: ../src/resgraphview.cpp:517
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:544
@@ -164,7 +158,7 @@ msgstr "<b>名稱</b>%1%2%3"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:545
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:518
 msgid "<b>Kind</b>%1%2%3"
-msgstr "<b>種類</b>%1%2%3"
+msgstr "<b>類型</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:522
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:549
@@ -192,14 +186,14 @@ msgstr "<b>描述</b>%1%2%3"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:854
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:825
 msgid "Unselect item"
-msgstr "未選取的項目"
+msgstr "取消選取項目"
 
 #: ../src/resgraphview.cpp:827
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:856
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:856
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:827
 msgid "Select item"
-msgstr "選取的項目"
+msgstr "選取項目"
 
 #: ../src/resgraphview.cpp:830
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:859
@@ -213,19 +207,19 @@ msgstr "顯示細節"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:833
 msgid "Rotate counter-clockwise"
-msgstr "逆時針方向旋轉"
+msgstr "逆時針旋轉"
 
 #: ../src/resgraphview.cpp:834
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:834
 msgid "Rotate clockwise"
-msgstr "順時針方向旋轉"
+msgstr "順時針旋轉"
 
 #: ../src/resgraphview.cpp:837
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:837
 msgid "Save tree as png"
-msgstr "以 png 儲存樹狀"
+msgstr "以 PNG 儲存樹狀結構"
 

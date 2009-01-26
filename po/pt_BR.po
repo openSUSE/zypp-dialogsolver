@@ -1,28 +1,19 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dialogsolver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-08 09:35+0200\n"
-"PO-Revision-Date: 2008-09-29 23:17-0300\n"
-"Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
+"PO-Revision-Date: 2009-01-22 19:26\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-Country: BRAZIL\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/QZyppSolverDialog.cpp:29
-#: ../src/QZyppSolverDialog.cpp:83
+#: ../src/QZyppSolverDialog.cpp:29 ../src/QZyppSolverDialog.cpp:83
 #: ../src/restreewidget.cpp:290
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:25
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:25
@@ -30,10 +21,9 @@ msgstr ""
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:83
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:290
 msgid "Critical Error"
-msgstr "Erro crítico"
+msgstr "Erro Crítico"
 
-#: ../src/QZyppSolverDialog.cpp:30
-#: ../src/QZyppSolverDialog.cpp:84
+#: ../src/QZyppSolverDialog.cpp:30 ../src/QZyppSolverDialog.cpp:84
 #: ../src/restreewidget.cpp:291
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:26
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:26
@@ -41,17 +31,17 @@ msgstr "Erro crítico"
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:291
 msgid "No valid solver result"
-msgstr "Nenhum resultado válido do otimizador"
+msgstr "Nenhum resultado válido do resolvedor"
 
 #: ../src/restreewidget.cpp:74
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:74
 msgid "show installed packages"
-msgstr "exibir os pacotes instalados"
+msgstr "mostrar pacotes instalados"
 
 #: ../src/restreewidget.cpp:75
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:75
 msgid "show recommended packages"
-msgstr "exibir os pacotes recomendados"
+msgstr "mostrar pacotes recomendados"
 
 #: ../src/restreewidget.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:65
@@ -67,8 +57,7 @@ msgstr "Pesquisar:"
 msgid "Description"
 msgstr "Descrição"
 
-#: ../src/restreewidget.cpp:94
-#: ../src/restreewidget.cpp:102
+#: ../src/restreewidget.cpp:94 ../src/restreewidget.cpp:102
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:75
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:83
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:75
@@ -78,8 +67,7 @@ msgstr "Descrição"
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/restreewidget.cpp:95
-#: ../src/restreewidget.cpp:103
+#: ../src/restreewidget.cpp:95 ../src/restreewidget.cpp:103
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:76
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:84
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:76
@@ -89,8 +77,7 @@ msgstr "Nome"
 msgid "Version"
 msgstr "Versão"
 
-#: ../src/restreewidget.cpp:96
-#: ../src/restreewidget.cpp:104
+#: ../src/restreewidget.cpp:96 ../src/restreewidget.cpp:104
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:77
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:85
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:77
@@ -100,8 +87,7 @@ msgstr "Versão"
 msgid "Dependency"
 msgstr "Dependência"
 
-#: ../src/restreewidget.cpp:97
-#: ../src/restreewidget.cpp:105
+#: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:78
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:86
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:78
@@ -137,21 +123,21 @@ msgstr "Erro ao executar a ferramenta de layout gráfico.\n"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:311
 msgid "Please check that 'dot' is installed (package GraphViz)."
-msgstr "Por favor, verifique se o 'dot' está instalado (pacote GraphViz)."
+msgstr "Verifique se o 'dot' está instalado (pacote GraphViz)."
 
 #: ../src/resgraphview.cpp:405
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:405
 msgid "Could not open tempfile %1 for writing."
-msgstr "Não foi possível abrir arquivo temporário %1 para escrita."
+msgstr "Impossível abrir arquivo temporário %1 para gravação."
 
 #: ../src/resgraphview.cpp:465
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:465
 msgid "Could not start process \"%1\"."
-msgstr "Não foi possível iniciar o processo \"%1\"."
+msgstr "Impossível iniciar o processo \"%1\"."
 
 #: ../src/resgraphview.cpp:511
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
@@ -221,19 +207,19 @@ msgstr "Exibir detalhes"
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:833
 msgid "Rotate counter-clockwise"
-msgstr "Girar em sentido anti-horário"
+msgstr "Girar no sentido anti-horário"
 
 #: ../src/resgraphview.cpp:834
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:834
 msgid "Rotate clockwise"
-msgstr "Girar em sentido horário"
+msgstr "Girar no sentido horário"
 
 #: ../src/resgraphview.cpp:837
 #: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
 #: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
 #: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:837
 msgid "Save tree as png"
-msgstr "Salvar árvore como png"
+msgstr "Gravar árvore como png"
 
