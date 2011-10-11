@@ -47,12 +47,12 @@ using namespace zypp;
  */
 ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr r,
 			     const zypp::PoolItem item,
-			     const char* name, Qt::WFlags fl) 
+			     const char* name, Qt::WFlags fl)
     : QWidget( parent, name, fl )
       ,resolver(r)
       ,root_item(item)
 {
-    _lastSelectedItem = "";    
+    _lastSelectedItem = "";
     if ( !name )
         setName( "ResTreeWidget" );
     ResTreeWidgetLayout = new QVBoxLayout( this, 11, 6, "ResTreeWidgetLayout");
@@ -74,11 +74,11 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     showInstalled = new QCheckBox(i18n("show installed packages"), checkBox);
     showRecommend = new QCheckBox(i18n("show recommended packages"), checkBox);;
     showInstalled->setChecked(true);
-    if (resolver->onlyRequires()) 
+    if (resolver->onlyRequires())
 	showRecommend->setChecked(false);
     else
-	showRecommend->setChecked(true);	
-    
+	showRecommend->setChecked(true);
+
     searchBox = new Q3HBox( descriptionBox, "searchBox");
     searchBox->setSpacing (5);
     searchLabel = new QLabel (i18n("Search: "), searchBox);
@@ -95,7 +95,7 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     installListView->addColumn( i18n("Version") );
     installListView->addColumn( i18n("Dependency") );
     installListView->addColumn( i18n("Kind") );
-    installListView->setAllColumnsShowFocus( TRUE );    
+    installListView->setAllColumnsShowFocus( TRUE );
     tabWidget->addTab( installListView, i18n("Needs") );
 
     installedListView = new Q3ListView( tabWidget, "installListView" );
@@ -111,9 +111,9 @@ ResTreeWidget::ResTreeWidget(QWidget* parent, zypp::solver::detail::Resolver_Ptr
     connect( resolvableList, SIGNAL( activated( const QString & ) ), this, SLOT( slotComboActivated( const QString & ) ) );
     connect( showRecommend, SIGNAL( stateChanged ( int )  ), this, SLOT( showRecommendChanged ( int ) ) );
     connect( showInstalled, SIGNAL( stateChanged ( int )  ), this, SLOT( showInstalledChanged ( int ) ) );
-    
+
     ResTreeWidgetLayout->addWidget(m_Splitter);
-    
+
 }
 
 /*
@@ -163,12 +163,11 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 	    edition += ".";
 	    edition += iter->item->arch().asString().c_str();
 
-	    Q3ListViewItem *element = new Q3ListViewItem( installedListView,
-							QString(iter->item->name().c_str()),
-							edition,
-							QString(iter->cap.asString().c_str()),
-							QString(iter->capKind.asString().c_str()));
-	    element = NULL;
+	    new Q3ListViewItem( installedListView,
+				QString(iter->item->name().c_str()),
+				edition,
+				QString(iter->cap.asString().c_str()),
+				QString(iter->capKind.asString().c_str()));
 	}
 
 	if (item.status().staysInstalled()) {
@@ -180,29 +179,27 @@ void ResTreeWidget::setDetailText(const QString& _s, const zypp::PoolItem item)
 		edition += ".";
 		edition += iter->item->arch().asString().c_str();
 
-		Q3ListViewItem *element = new Q3ListViewItem( installedListView,
-							      QString(iter->item->name().c_str()),
-							      edition,
-							      QString(iter->cap.asString().c_str()),
-							      QString(iter->capKind.asString().c_str()));
-		element = NULL;
+		new Q3ListViewItem( installedListView,
+				    QString(iter->item->name().c_str()),
+				    edition,
+				    QString(iter->cap.asString().c_str()),
+				    QString(iter->capKind.asString().c_str()));
 	    }
 	}
-	    
+
 	for (zypp::solver::detail::ItemCapKindList::const_iterator iter = installList.begin();
 	     iter != installList.end(); ++iter) {
 	    QString edition = iter->item->edition().asString().c_str();
 	    edition += ".";
 	    edition += iter->item->arch().asString().c_str();
-	    Q3ListViewItem *element = new Q3ListViewItem( installListView,
-							QString(iter->item->name().c_str()),
-							edition,  
-							QString(iter->cap.asString().c_str()),
-							QString(iter->capKind.asString().c_str()));
-	    element = NULL;	    
+	    new Q3ListViewItem( installListView,
+				QString(iter->item->name().c_str()),
+				edition,
+				QString(iter->cap.asString().c_str()),
+				QString(iter->capKind.asString().c_str()));
 	}
     }
-    
+
     m_Detailstext->setText(_s);
     Q3ValueList<int> list = m_Splitter->sizes();
     if (list.count()!=2) return;
@@ -263,7 +260,7 @@ void ResTreeWidget::showRecommendChanged(int state) {
     setCursor (Qt::WaitCursor);
     pool.proxy().saveState(); // Save old pool
     bool saveRec = resolver->onlyRequires();
-    
+
     if (root_item != PoolItem()) {
 	// Make a solver run with the selected item
 	// resetting all selections
@@ -271,17 +268,17 @@ void ResTreeWidget::showRecommendChanged(int state) {
 	invokeOnEach ( pool.begin(), pool.end(),
 		       resfilter::ByTransact( ),                    // Resetting all transcations
 		       functor::functorRef<bool,PoolItem>(resetting) );
- 
+
 	// set the selected item for installation only
 	root_item.status().setToBeInstalled( ResStatus::USER);
     }
 
-    // and resolve		    
+    // and resolve
     resolver = new zypp::solver::detail::Resolver( pool );
     if (!showRecommend->isChecked()) {
 	resolver->setOnlyRequires(true);
     } else {
-	resolver->setOnlyRequires(false);	
+	resolver->setOnlyRequires(false);
     }
     resolver->resolvePool();
     if (resolver == NULL
@@ -297,7 +294,7 @@ void ResTreeWidget::showRecommendChanged(int state) {
 
     pool.proxy().restoreState(); // Restore old state
     resolver->setOnlyRequires(saveRec);
-    setCursor (oldCursor);         
+    setCursor (oldCursor);
 }
 
 
@@ -322,12 +319,12 @@ void ResTreeWidget::buildTree() {
 	    for (zypp::ResPool::const_iterator it = resolver->pool().begin();
 		 it != resolver->pool().end();
 		 ++it)
-	    { // find all root items and generate 
+	    { // find all root items and generate
 		if (it->status().isToBeInstalled()) {
-		
-		    zypp::ResObject::constPtr r = it->resolvable();		
+
+		    zypp::ResObject::constPtr r = it->resolvable();
 		    bool rootfound = false;
-		    zypp::solver::detail::ItemCapKindList isInstalledList = resolver->isInstalledBy (*it);		
+		    zypp::solver::detail::ItemCapKindList isInstalledList = resolver->isInstalledBy (*it);
 		    if (isInstalledList.empty()) {
 			rootfound = true;
 		    } else {
@@ -341,17 +338,17 @@ void ResTreeWidget::buildTree() {
 		    }
 
 		    if (rootfound) {
-			QString idStr = QString( "%1" ).arg( id++ );		    
+			QString idStr = QString( "%1" ).arg( id++ );
 			m_RevGraphView->m_Tree[idStr].item = *it;
 
 			// we have found a root; collect all trees
 			buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, *it, id);
 		    }
-		}	
+		}
 	    }
 	} else {
 	    // take the selected root item for "root"
-	    QString idStr = QString( "%1" ).arg( id++ );		    
+	    QString idStr = QString( "%1" ).arg( id++ );
 	    m_RevGraphView->m_Tree[idStr].item = root_item;
 
 	    // collect all trees
@@ -360,8 +357,8 @@ void ResTreeWidget::buildTree() {
     }
     dumpRevtree();
     selectItem(_lastSelectedItem);
-}  
-    
+}
+
 void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp::PoolItem item, int &id) {
     // generate the branches for items which will really be installed
     zypp::solver::detail::ItemCapKindList installList = resolver->installs (item);
@@ -371,7 +368,7 @@ void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp
 	    // This item will REALLY triggered by the given root item (not only due required dependencies)
 	    QString idStr = QString( "%1" ).arg( id++ );
 
-	    childList.append(ResGraphView::targetData(idStr));		    
+	    childList.append(ResGraphView::targetData(idStr));
 	    m_RevGraphView->m_Tree[idStr].item=it->item;
 	    m_RevGraphView->m_Tree[idStr].dueto = *it;
 
@@ -379,7 +376,7 @@ void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp
 
 	    // we have found a root; collect all trees
 	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end())
-		buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, it->item, id); 		    
+		buildTreeBranch ( m_RevGraphView->m_Tree[idStr].targets, it->item, id);
 	}
     }
 
@@ -388,10 +385,10 @@ void ResTreeWidget::buildTreeBranch ( ResGraphView::tlist &childList, const zypp
 	zypp::solver::detail::ItemCapKindList satisfiedList = resolver->satifiedByInstalled (item);
 	for (zypp::solver::detail::ItemCapKindList::const_iterator it = satisfiedList.begin();
 	     it != satisfiedList.end(); it++) {
-	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end()) {	    
+	    if (alreadyHitItems.find(it->item) == alreadyHitItems.end()) {
 		QString idStr = QString( "%1" ).arg( id++ );
 
-		childList.append(ResGraphView::targetData(idStr));		    
+		childList.append(ResGraphView::targetData(idStr));
 		m_RevGraphView->m_Tree[idStr].item=it->item;
 		m_RevGraphView->m_Tree[idStr].dueto = *it;
 
