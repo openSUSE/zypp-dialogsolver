@@ -6,9 +6,9 @@ SET( PACKAGE libqdialogsolver1)
 SET( CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/share/cmake/Modules" ${CMAKE_MODULE_PATH} )
 SET( CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules )
 
-SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Woverloaded-virtual -Wno-deprecated -std=c++0x" )
+SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Woverloaded-virtual -Wno-deprecated" )
 SET( CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -g -Wall" )
-set( CMAKE_CXX_FLAGS_RELEASE   "${CMAKE_CXX_FLAGS_RELEASE} -DQT_NO_DEBUG -DNDEBUG  -std=c++0x")
+set( CMAKE_CXX_FLAGS_RELEASE   "${CMAKE_CXX_FLAGS_RELEASE} -DQT_NO_DEBUG -DNDEBUG")
 
 SET( RPMNAME "libqdialogsolver1" )
 
