@@ -1,10 +1,17 @@
 #
-# spec file for package libqdialogsolver (Version 1.0.0)
+# spec file for package libqdialogsolver
 #
-# Copyright (c) 2006 SUSE LINUX Products GmbH, Nuernberg, Germany.
-# This file and all modifications and additions to the pristine
-# package are under the same license as the package itself.
+# Copyright (c) 2009 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
@@ -13,31 +20,31 @@
 Name:           @PACKAGE@
 Version:        @VERSION@
 Release:        0
-License:        GPL
-Group:          System/Management
+License:        GPL v2 or later
+Group:          System/Packages
 Summary:        QDialog class for showing solver results
 Requires:       libzypp >= %( echo `rpm -q --queryformat '%{VERSION}-%{RELEASE}' libzypp`) graphviz
-Autoreqprov:    on
+AutoreqProv:    on
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  libqt4-devel gettext-devel cmake yast2-libyui-devel
 BuildRequires:	gcc-c++ >= 4.5
 
 # API Changes in zypp 2.1
 BuildRequires: libzypp-devel >= 2.8.7
-
 Source:        libqdialogsolver1-%{version}.tar.bz2
 
 %description
 This package provides a QDialog class for showing solver results
 
 %package devel
+License:        GPL v2 or later
 Requires:       libqdialogsolver1 == %{version}
-Summary:        Libqdialogsolver - developers files
-Group:          Development/Library/Others
+Summary:        QDialog class for showing solver results
+Group:          Development/Libraries/Others
 
 %description -n libqdialogsolver1-devel
-This package provides a QDialog class for showing solver results. - developers files
-
+This package provides a QDialog class for showing solver results.
+Included needed header files
 
 Authors:
 --------
