@@ -96,4 +96,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libqdialogsolver.so
 %{_libdir}/YaST2/plugin/libpy2qt_zypp_solver_dialog.so
 
-
+%changelog
