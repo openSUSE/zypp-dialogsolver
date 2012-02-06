@@ -37,7 +37,7 @@ Source:        libqdialogsolver1-%{version}.tar.bz2
 This package provides a QDialog class for showing solver results
 
 %package devel
-License:        GPL v2 or later
+License:        GPL-2.0+
 Requires:       libqdialogsolver1 == %{version}
 Summary:        QDialog class for showing solver results
 Group:          Development/Libraries/Others
