@@ -19,8 +19,10 @@
 #include "YQZyppSolverDialogPluginImpl.h"
 
 #define YUILogComponent "qt-solver-dialog"
-#include <YUILog.h>
+#include <yui/YUILog.h>
 #include "QZyppSolverDialog.h"
+
+using std::endl;
 
 ///////////////////////////////////////////////////////////////////
 //
@@ -28,7 +30,7 @@
 //	METHOD NAME : YQZyppSolverDialogPluginStub::createZyppSolverDialog
 //	METHOD TYPE : YWidget
 //
-//	DESCRIPTION : 
+//	DESCRIPTION :
 //
 extern "C" {
 YQZyppSolverDialogPluginImpl ZYPPDIALOGP;
@@ -40,8 +42,8 @@ bool YQZyppSolverDialogPluginImpl::createZyppSolverDialog( const zypp::PoolItem 
 
     QZyppSolverDialog *dialog = new QZyppSolverDialog(item);
     dialog->setMinimumSize ( 700, 700 );
-    dialog->show();    
-    
+    dialog->show();
+
     return true;
 }
 
