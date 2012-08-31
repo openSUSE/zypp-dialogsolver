@@ -28,8 +28,13 @@ Summary:        QDialog class for showing solver results
 %endif
 Requires:       graphviz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  libqt4-devel gettext-devel cmake libyui-devel
+BuildRequires:  libqt4-devel gettext-devel cmake
 BuildRequires:	gcc-c++ >= 4.5
+%if 0%{?suse_version} <= 1220
+BuildRequires:  yast2-libyui-devel
+%else
+BuildRequires:  libyui-devel
+%endif
 
 # API Changes in zypp 2.1
 BuildRequires: libzypp-devel >= 2.8.7
