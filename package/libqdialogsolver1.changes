@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Mon Feb 24 11:34:56 CET 2014 - ma@suse.de
+
+- adapted to work with new yast independend libyui
+- version 1.3.2
+
+-------------------------------------------------------------------
 Mon Apr 29 12:11:39 CEST 2013 - ma@suse.de
 
 - Compile with std=c++0x
