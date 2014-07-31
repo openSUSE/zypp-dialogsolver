@@ -15,6 +15,7 @@
   Author:	Stefan Schubert
 
 /-*/
+#include <iostream>
 
 #include "YQZyppSolverDialogPluginImpl.h"
 
