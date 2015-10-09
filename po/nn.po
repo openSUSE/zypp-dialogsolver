@@ -1,130 +1,134 @@
+# @TITLE@
+# Copyright (C) 2011, SUSE Linux GmbH, Nuremberg
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Karl Ove Hufthammer <karl@huftis.org>, 2015.
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-09 16:31+0200\n"
-"PO-Revision-Date: 2005-11-08 12:26+8\n"
-"Last-Translator: Steve Beattie <steve@immunix.com>\n"
-"Language-Team: English\n"
-"Language: \n"
+"PO-Revision-Date: 2015-09-09 16:31+0100\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: NorwegianNynorsk <i18n-nn@lister.ping.uio.no>\n"
+"Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ../src/QZyppSolverDialog.cpp:29 ../src/QZyppSolverDialog.cpp:83
 #: ../src/restreewidget.cpp:287
 msgid "Critical Error"
-msgstr ""
+msgstr "Kritisk feil"
 
 #: ../src/QZyppSolverDialog.cpp:30 ../src/QZyppSolverDialog.cpp:84
 #: ../src/restreewidget.cpp:288
 msgid "No valid solver result"
-msgstr ""
+msgstr "Inga gyldig konfliktløysing"
 
 #: ../src/resgraphview.cpp:310
 msgid "Error running the graph layouting tool.\n"
-msgstr ""
+msgstr "Feil ved køyring av grafformateringsverktøyet.\n"
 
 #: ../src/resgraphview.cpp:311
 msgid "Please check that 'dot' is installed (package GraphViz)."
-msgstr ""
+msgstr "Kontroller at «dot» er installert (GraphViz-pakken)."
 
 #: ../src/resgraphview.cpp:405
-#, fuzzy
 msgid "Could not open tempfile %1 for writing."
-msgstr "Couldn't open file: %s."
+msgstr "Klarte ikkje opna den mellombelse fila %1 for skriving."
 
 #: ../src/resgraphview.cpp:465
 msgid "Could not start process \"%1\"."
-msgstr ""
+msgstr "Klarte ikkje starta prosessen «%1»."
 
 #: ../src/resgraphview.cpp:511
 msgid "<br>Kind: %1<br>Version: %2<br>Source: %3</html>"
-msgstr ""
+msgstr "<br>Type: %1<br>Versjon: %2<br>Kjelde: %3</html>"
 
 #: ../src/resgraphview.cpp:517
 msgid "<b>Name</b>%1%2%3"
-msgstr ""
+msgstr "<b>Namn</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:518
 msgid "<b>Kind</b>%1%2%3"
-msgstr ""
+msgstr "<b>Type</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:522
 msgid "<b>Version</b>%1%2%3"
-msgstr ""
+msgstr "<b>Versjon</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:523
 msgid "<b>Source</b>%1%2%3"
-msgstr ""
+msgstr "<b>Kjelde</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:524
-#, fuzzy
 msgid "<b>Description</b>%1%2%3"
-msgstr "Description"
+msgstr "<b>Skildring</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:825
 msgid "Unselect item"
-msgstr ""
+msgstr "Vel vekk element"
 
 #: ../src/resgraphview.cpp:827
 msgid "Select item"
-msgstr ""
+msgstr "Vel element"
 
 #: ../src/resgraphview.cpp:830
 msgid "Display details"
-msgstr ""
+msgstr "Vis detaljar"
 
 #: ../src/resgraphview.cpp:833
 msgid "Rotate counter-clockwise"
-msgstr ""
+msgstr "Drei mot klokka"
 
 #: ../src/resgraphview.cpp:834
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Drei med klokka"
 
 #: ../src/resgraphview.cpp:837
 msgid "Save tree as png"
-msgstr ""
+msgstr "Lagra treet som PNG-bilete"
 
 #: ../src/restreewidget.cpp:74
 msgid "show installed packages"
-msgstr ""
+msgstr "vis installerte pakkar"
 
 #: ../src/restreewidget.cpp:75
 msgid "show recommended packages"
-msgstr ""
+msgstr "vis anbefalte pakkar"
 
 #: ../src/restreewidget.cpp:84
-#, fuzzy
 msgid "Search: "
-msgstr "Arch: "
+msgstr "Søk: "
 
 #: ../src/restreewidget.cpp:91
 msgid "Description"
-msgstr "Description"
+msgstr "Skildring"
 
 #: ../src/restreewidget.cpp:94 ../src/restreewidget.cpp:102
 msgid "Name"
-msgstr "Name"
+msgstr "Namn"
 
 #: ../src/restreewidget.cpp:95 ../src/restreewidget.cpp:103
 msgid "Version"
-msgstr "Version"
+msgstr "Versjon"
 
 #: ../src/restreewidget.cpp:96 ../src/restreewidget.cpp:104
 msgid "Dependency"
-msgstr ""
+msgstr "Avhengnad"
 
 #: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
 msgid "Kind"
-msgstr ""
+msgstr "Type"
 
 #: ../src/restreewidget.cpp:99
 msgid "Needs"
-msgstr ""
+msgstr "Krev"
 
 #: ../src/restreewidget.cpp:107
 msgid "Needed by"
-msgstr ""
+msgstr "Er kravd av"

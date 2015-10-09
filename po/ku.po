@@ -1,21 +1,25 @@
+# Copyright © 2009 SUSE Linux Products GmbH.
+# Kurdish Team <i18n@suse.de>, 2009.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: memory.ku.po\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-09 16:31+0200\n"
-"PO-Revision-Date: 2005-11-08 12:26+8\n"
-"Last-Translator: Steve Beattie <steve@immunix.com>\n"
-"Language-Team: English\n"
+"PO-Revision-Date: 2005-09-23 00:15+0200\n"
+"Last-Translator: Kurdish Team <i18n@suse.de>\n"
+"Language-Team: Kurdish Team <i18n@suse.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1\n"
 
 #: ../src/QZyppSolverDialog.cpp:29 ../src/QZyppSolverDialog.cpp:83
 #: ../src/restreewidget.cpp:287
+#, fuzzy
 msgid "Critical Error"
-msgstr ""
+msgstr "&Krîtîk"
 
 #: ../src/QZyppSolverDialog.cpp:30 ../src/QZyppSolverDialog.cpp:84
 #: ../src/restreewidget.cpp:288
@@ -31,9 +35,8 @@ msgid "Please check that 'dot' is installed (package GraphViz)."
 msgstr ""
 
 #: ../src/resgraphview.cpp:405
-#, fuzzy
 msgid "Could not open tempfile %1 for writing."
-msgstr "Couldn't open file: %s."
+msgstr ""
 
 #: ../src/resgraphview.cpp:465
 msgid "Could not start process \"%1\"."
@@ -52,8 +55,9 @@ msgid "<b>Kind</b>%1%2%3"
 msgstr ""
 
 #: ../src/resgraphview.cpp:522
+#, fuzzy
 msgid "<b>Version</b>%1%2%3"
-msgstr ""
+msgstr "<b>Guherto: </b>"
 
 #: ../src/resgraphview.cpp:523
 msgid "<b>Source</b>%1%2%3"
@@ -62,19 +66,22 @@ msgstr ""
 #: ../src/resgraphview.cpp:524
 #, fuzzy
 msgid "<b>Description</b>%1%2%3"
-msgstr "Description"
+msgstr "<p><b>Daxuyanî</b></p>"
 
 #: ../src/resgraphview.cpp:825
+#, fuzzy
 msgid "Unselect item"
-msgstr ""
+msgstr "Pel Hilbijêre"
 
 #: ../src/resgraphview.cpp:827
+#, fuzzy
 msgid "Select item"
-msgstr ""
+msgstr "Pel Hilbijêre"
 
 #: ../src/resgraphview.cpp:830
+#, fuzzy
 msgid "Display details"
-msgstr ""
+msgstr "Mîhengên Dîmender"
 
 #: ../src/resgraphview.cpp:833
 msgid "Rotate counter-clockwise"
@@ -85,37 +92,41 @@ msgid "Rotate clockwise"
 msgstr ""
 
 #: ../src/resgraphview.cpp:837
+#, fuzzy
 msgid "Save tree as png"
-msgstr ""
+msgstr "Cuda tomar bike"
 
 #: ../src/restreewidget.cpp:74
+#, fuzzy
 msgid "show installed packages"
-msgstr ""
+msgstr "Pakêtên Sazkirî"
 
 #: ../src/restreewidget.cpp:75
+#, fuzzy
 msgid "show recommended packages"
-msgstr ""
+msgstr "Pakêtên tên salixdan"
 
 #: ../src/restreewidget.cpp:84
 #, fuzzy
 msgid "Search: "
-msgstr "Arch: "
+msgstr "Lêgere"
 
 #: ../src/restreewidget.cpp:91
 msgid "Description"
-msgstr "Description"
+msgstr "Daxwiyanî"
 
 #: ../src/restreewidget.cpp:94 ../src/restreewidget.cpp:102
 msgid "Name"
-msgstr "Name"
+msgstr "Nav"
 
 #: ../src/restreewidget.cpp:95 ../src/restreewidget.cpp:103
 msgid "Version"
-msgstr "Version"
+msgstr "Guherto"
 
 #: ../src/restreewidget.cpp:96 ../src/restreewidget.cpp:104
+#, fuzzy
 msgid "Dependency"
-msgstr ""
+msgstr "Girêdayî"
 
 #: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
 msgid "Kind"
@@ -126,5 +137,6 @@ msgid "Needs"
 msgstr ""
 
 #: ../src/restreewidget.cpp:107
+#, fuzzy
 msgid "Needed by"
-msgstr ""
+msgstr "Hatiye avakirin aliyê:"

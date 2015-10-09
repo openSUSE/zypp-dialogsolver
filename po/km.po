@@ -1,226 +1,132 @@
 # translation of dialogsolver.km.po to Khmer
 # Khoem Sokhem <khoemsokhem@khmeros.info>, 2008.
+# Seng Sutha <sutha@khmeros.info>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: dialogsolver.km\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-08 09:35+0200\n"
+"POT-Creation-Date: 2015-10-09 16:31+0200\n"
 "PO-Revision-Date: 2008-09-19 14:29+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Language: km-KH\n"
 
 #: ../src/QZyppSolverDialog.cpp:29 ../src/QZyppSolverDialog.cpp:83
-#: ../src/restreewidget.cpp:290
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:25
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:25
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:29
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:83
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:290
+#: ../src/restreewidget.cpp:287
 msgid "Critical Error"
 msgstr "កំហុស​ធ្ងន់ធ្ងរ"
 
 #: ../src/QZyppSolverDialog.cpp:30 ../src/QZyppSolverDialog.cpp:84
-#: ../src/restreewidget.cpp:291
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:26
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/QZyppSolverDialog.cpp:26
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:30
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/QZyppSolverDialog.cpp:84
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:291
+#: ../src/restreewidget.cpp:288
 msgid "No valid solver result"
 msgstr "គ្មាន​លទ្ធផល​កម្មវិធី​ដោះស្រាយ​ត្រឹមត្រូវ"
 
-#: ../src/restreewidget.cpp:74
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:74
-msgid "show installed packages"
-msgstr "បង្ហាញ​កញ្ចប់​ដែល​បាន​ដំឡើង"
-
-#: ../src/restreewidget.cpp:75
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:75
-msgid "show recommended packages"
-msgstr "បង្ហាញ​កញ្ចប់​ដែល​បានផ្ដល់​អនុសាសន៍"
-
-#: ../src/restreewidget.cpp:84
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:65
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:65
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:84
-msgid "Search: "
-msgstr "ស្វែងរក ៖ "
-
-#: ../src/restreewidget.cpp:91
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:72
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:72
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:91
-msgid "Description"
-msgstr "សេចក្តី​ពិពណ៌នា"
-
-#: ../src/restreewidget.cpp:94 ../src/restreewidget.cpp:102
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:75
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:83
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:75
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:83
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:94
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:102
-msgid "Name"
-msgstr "ឈ្មោះ"
-
-#: ../src/restreewidget.cpp:95 ../src/restreewidget.cpp:103
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:76
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:84
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:76
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:84
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:95
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:103
-msgid "Version"
-msgstr "កំណែ"
-
-#: ../src/restreewidget.cpp:96 ../src/restreewidget.cpp:104
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:77
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:85
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:77
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:85
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:96
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:104
-msgid "Dependency"
-msgstr "ភាព​អាស្រ័យ"
-
-#: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:78
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:86
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:78
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:86
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:97
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:105
-msgid "Kind"
-msgstr "ប្រភេទ"
-
-#: ../src/restreewidget.cpp:99
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:80
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:99
-msgid "Needs"
-msgstr "ត្រូវការ​"
-
-#: ../src/restreewidget.cpp:107
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/restreewidget.cpp:88
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/restreewidget.cpp:107
-msgid "Needed by"
-msgstr "ត្រូវការ​ដោយ"
-
 #: ../src/resgraphview.cpp:310
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:345
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:310
 msgid "Error running the graph layouting tool.\n"
 msgstr "កំហុស​ក្នុង​ការ​រត់​ឧបករណ៍​ប្លង់​ក្រាហ្វិក ។\n"
 
 #: ../src/resgraphview.cpp:311
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:346
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:311
 msgid "Please check that 'dot' is installed (package GraphViz)."
 msgstr "សូម​ពិនិត្យ​ថា 'dot' ត្រូវ​បាន​ដំឡើង (កញ្ចប់ GraphViz) ។"
 
 #: ../src/resgraphview.cpp:405
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:435
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:405
 msgid "Could not open tempfile %1 for writing."
 msgstr "មិន​អាច​បើក​ឯកសារ​ពុម្ព %1 ដើម្បី​សរសេរ ។"
 
 #: ../src/resgraphview.cpp:465
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:495
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:465
 msgid "Could not start process \"%1\"."
 msgstr "មិន​អាច​ចាប់ផ្ដើម​ដំណើរការ \"%1\" ។"
 
 #: ../src/resgraphview.cpp:511
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:538
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:511
 msgid "<br>Kind: %1<br>Version: %2<br>Source: %3</html>"
 msgstr "<br>ប្រភេទ ៖ %1<br>កំណែ ៖ %2<br>ប្រភព ៖ %3</html>"
 
 #: ../src/resgraphview.cpp:517
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:544
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:544
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:517
 msgid "<b>Name</b>%1%2%3"
 msgstr "<b>ឈ្មោះ</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:518
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:545
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:545
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:518
 msgid "<b>Kind</b>%1%2%3"
 msgstr "<b>ប្រភេទ</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:522
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:549
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:549
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:522
 msgid "<b>Version</b>%1%2%3"
 msgstr "<b>កំណែ</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:523
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:550
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:550
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:523
 msgid "<b>Source</b>%1%2%3"
 msgstr "<b>ប្រភព</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:524
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:551
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:551
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:524
 msgid "<b>Description</b>%1%2%3"
 msgstr "<b>សេចក្ដី​ពិពណ៌នា</b>%1%2%3"
 
 #: ../src/resgraphview.cpp:825
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:854
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:854
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:825
 msgid "Unselect item"
-msgstr "មិនជ្រើស​ធាតុ"
+msgstr "មិន​ជ្រើស​ធាតុ"
 
 #: ../src/resgraphview.cpp:827
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:856
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:856
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:827
 msgid "Select item"
 msgstr "ជ្រើស​ធាតុ"
 
 #: ../src/resgraphview.cpp:830
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:859
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:859
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:830
 msgid "Display details"
 msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
 
 #: ../src/resgraphview.cpp:833
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:862
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:833
 msgid "Rotate counter-clockwise"
 msgstr "បង្វិល​ច្រាស​ទ្រនិច​នាឡិកា"
 
 #: ../src/resgraphview.cpp:834
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:863
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:834
 msgid "Rotate clockwise"
 msgstr "បង្វិល​ស្រប​ទ្រនិច​នាឡិកា"
 
 #: ../src/resgraphview.cpp:837
-#: ../build/_CPack_Packages/Linux-Source/TZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
-#: ../build/_CPack_Packages/Linux-Source/TGZ/libqdialogsolver1-0.1.1-Source/src/resgraphview.cpp:866
-#: ../build/_CPack_Packages/Linux-Source/TBZ2/libqdialogsolver1-1.2.0/src/resgraphview.cpp:837
 msgid "Save tree as png"
 msgstr "រក្សាទុក​មែកធាង​ជា png"
 
+#: ../src/restreewidget.cpp:74
+msgid "show installed packages"
+msgstr "បង្ហាញ​កញ្ចប់​ដែល​បាន​ដំឡើង"
+
+#: ../src/restreewidget.cpp:75
+msgid "show recommended packages"
+msgstr "បង្ហាញ​កញ្ចប់​ដែល​បាន​ផ្ដល់​អនុសាសន៍"
+
+#: ../src/restreewidget.cpp:84
+msgid "Search: "
+msgstr "ស្វែងរក ៖ "
+
+#: ../src/restreewidget.cpp:91
+msgid "Description"
+msgstr "សេចក្តី​ពិពណ៌នា"
+
+#: ../src/restreewidget.cpp:94 ../src/restreewidget.cpp:102
+msgid "Name"
+msgstr "ឈ្មោះ"
+
+#: ../src/restreewidget.cpp:95 ../src/restreewidget.cpp:103
+msgid "Version"
+msgstr "កំណែ"
+
+#: ../src/restreewidget.cpp:96 ../src/restreewidget.cpp:104
+msgid "Dependency"
+msgstr "ភាព​អាស្រ័យ​"
+
+#: ../src/restreewidget.cpp:97 ../src/restreewidget.cpp:105
+msgid "Kind"
+msgstr "ប្រភេទ"
+
+#: ../src/restreewidget.cpp:99
+msgid "Needs"
+msgstr "ត្រូវការ​"
+
+#: ../src/restreewidget.cpp:107
+msgid "Needed by"
+msgstr "ត្រូវការ​ដោយ"
